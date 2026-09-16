@@ -363,6 +363,136 @@
 
   .counted strong { color: var(--alive); }
 
+  .strip-wrap { margin-top: 20px; }
+
+  .strip-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .strip-label {
+    font-size: 11px;
+    font-weight: 680;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .strip-spare {
+    font-size: 12px;
+    font-weight: 620;
+    color: var(--alive);
+    flex: 0 0 auto;
+  }
+
+  .strip-spare.none { color: var(--ended); }
+
+  .strip-spare svg,
+  .tile-freeze svg {
+    width: 13px;
+    height: 13px;
+    vertical-align: -2px;
+    margin-right: 4px;
+  }
+
+  .tile-freeze {
+    margin-top: 7px;
+    padding-top: 7px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    font-weight: 620;
+    color: var(--alive);
+    line-height: 1.3;
+  }
+
+  .tile-freeze.none { color: var(--muted); }
+
+  .rules-h svg {
+    width: 13px;
+    height: 13px;
+    vertical-align: -2px;
+    margin-right: 5px;
+  }
+
+  .rules-key {
+    margin: 14px 0 0;
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    background: var(--ended-soft);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .rules-key svg {
+    width: 13px;
+    height: 13px;
+    vertical-align: -2px;
+    margin-right: 6px;
+  }
+
+  .rules-key .k-freeze { color: var(--alive); font-weight: 640; }
+  .rules-key .k-spare { color: var(--ended); font-weight: 640; }
+
+  .weekstrip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 10px;
+  }
+
+  .wsday {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    flex: 0 0 auto;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .wsday.done { background: var(--alive); }
+
+  /* Frozen — a freeze kept the DAILY streak alive. Snowflake, because it reads at this size. */
+  .wsday.frozen {
+    background: var(--alive-soft);
+    border: 2px solid var(--alive);
+    color: var(--alive);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wsday.frozen svg { width: 15px; height: 15px; }
+
+  /* The relief moment belongs on the Comeback surface, not on every render of home. */
+  #cb-strip .wsday.frozen { animation: wsPop 0.42s ease-out both; }
+
+  /* Absorbed — no freeze, so the daily streak went, but a SPARE DAY kept the week. */
+  .wsday.absorbed {
+    background: #dde1e7;
+    border: 2px solid #a9b2bd;
+  }
+
+  /* Over — nothing caught it. The week goal is gone too. */
+  .wsday.over { border: 2px solid #e2ded6; }
+
+  .wsday.today { border: 2px dashed var(--ink); }
+
+  .wsday.future::after {
+    content: '';
+    position: absolute;
+    inset: 9px;
+    border-radius: 50%;
+    background: #dcd8d0;
+  }
+
+  @keyframes wsPop {
+    0%   { transform: scale(0.6); opacity: 0; }
+    60%  { transform: scale(1.12); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
   .breakdown {
     margin-top: 16px;
     border-top: 1px solid var(--line);
@@ -582,6 +712,15 @@
         <p class="detail" id="cb-detail">Both missed days came out of your spare days, so the week still counts. You have <strong>2 spare days</strong> left.</p>
       </div>
 
+      <div class="strip-wrap">
+        <div class="strip-head">
+          <span class="strip-label" id="cb-strip-label"></span>
+          <span class="strip-spare" id="cb-strip-spare"></span>
+        </div>
+        <div class="weekstrip" id="cb-strip" aria-hidden="true"></div>
+        <p class="sr-only" id="cb-strip-sr"></p>
+      </div>
+
       <div class="breakdown" id="cb-rows"></div>
 
       <div class="spacer"></div>
@@ -653,14 +792,20 @@
         <span class="pill" id="home-pill">2-week streak</span>
       </div>
 
+      <div class="strip-wrap">
+        <div class="strip-head">
+          <span class="strip-label" id="home-strip-label"></span>
+          <span class="strip-spare" id="home-strip-spare"></span>
+        </div>
+        <div class="weekstrip" id="home-strip" aria-hidden="true"></div>
+        <p class="sr-only" id="home-strip-sr"></p>
+      </div>
+
       <div class="tiles">
         <div class="tile">
           <div class="tile-num ended" id="home-streak-num">0</div>
           <div class="tile-label" id="home-streak-label">Daily streak<br>Best: 12 days</div>
-        </div>
-        <div class="tile">
-          <div class="tile-num alive" id="home-spare-num">2</div>
-          <div class="tile-label">Spare days<br>Left this week</div>
+          <div class="tile-freeze" id="home-freeze"></div>
         </div>
       </div>
 
@@ -687,6 +832,8 @@
       <h1 id="rules-h" tabindex="-1">How streaks work</h1>
       <p class="lede">Your <strong>daily streak</strong> measures perfection. Your <strong>week streak</strong> measures consistency. They're kept separate on purpose — losing one doesn't touch the other.</p>
 
+      <p class="rules-key" id="rules-key"></p>
+
       <p class="rules-h">Daily streak</p>
       <ul class="rules">
         <li>Counts consecutive days with a completed lesson.</li>
@@ -695,7 +842,7 @@
         <li>Protection can never be bought. Only earned.</li>
       </ul>
 
-      <p class="rules-h">Freezes</p>
+      <p class="rules-h" id="rules-h-freeze">Freezes</p>
       <ul class="rules">
         <li>A freeze covers one missed day and keeps your daily streak alive.</li>
         <li>Applied automatically. We'll tell you when one gets used.</li>
@@ -713,7 +860,7 @@
         <li>Your weeks run from the day you joined — not Monday to Sunday.</li>
       </ul>
 
-      <p class="rules-h">Spare days</p>
+      <p class="rules-h" id="rules-h-spare">Spare days</p>
       <ul class="rules">
         <li>You start with <strong>3</strong>.</li>
         <li>Any week you don't use your allowance, it banks — up to 3.</li>
@@ -759,6 +906,18 @@
     document.getElementById(views[name].h).focus();
   }
 
+  // Snowflake = freeze, protects the DAILY streak. Six rays plus chevrons; survives at 15px.
+  const ICON_FREEZE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"/>' +
+    '<path d="M9.7 5.5L12 3l2.3 2.5M9.7 18.5L12 21l2.3-2.5"/></svg>';
+
+  // Spare tire = spare day, protects the WEEK. Reserve carried in advance, not recovery after a miss.
+  const ICON_SPARE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" aria-hidden="true">' +
+    '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.3"/>' +
+    '<path d="M12 3v3.2M12 17.8V21M3 12h3.2M17.8 12H21"/></svg>';
+
   const lessonCards = [
     'Card 1 of 2. Real lesson content comes from the user’s track; the track is not specified in the brief, so nothing is invented here.',
     'Card 2 of 2. Same placeholder. In the real thing this is a single review item sized to finish inside a minute.'
@@ -767,6 +926,10 @@
   const states = {
     week1: {
       eyebrow: 'Four days in.',
+      weekLabel: 'First week · day 5',
+      stripSpare: false,
+      freezes: '0',
+      week: ['done','done','frozen','absorbed','today','future','future'],
       headline: 'Your first week is still on track.',
       pushTitle: 'Your first week is still on track',
       pushBody: 'Two missed days came out of your spare days. Sixty seconds keeps the week going.',
@@ -797,6 +960,9 @@
     },
     save: {
       eyebrow: 'Yesterday was covered by your freeze.',
+      weekLabel: 'This week · day 7',
+      week: ['done','done','done','done','done','frozen','today'],
+      freezes: '0',
       headline: 'Today keeps your 12-day streak.',
       pushTitle: 'Today keeps your 12-day streak',
       pushBody: 'Your freeze covered yesterday. One lesson today and it carries on.',
@@ -827,6 +993,9 @@
     },
     short: {
       eyebrow: 'You’ve been away two days.',
+      weekLabel: 'This week · day 7',
+      week: ['done','done','done','done','frozen','absorbed','today'],
+      freezes: '0',
       headline: 'Your week streak is still going.',
       pushTitle: 'Your week streak is still going',
       pushBody: 'You missed two days — both came out of your spare days. Sixty seconds picks it back up.',
@@ -857,6 +1026,9 @@
     },
     long: {
       eyebrow: 'You’ve been away eight days.',
+      weekLabel: 'This week · day 7',
+      week: ['frozen','frozen','frozen','absorbed','over','over','today'],
+      freezes: '0',
       headline: 'Your 428-day best is safe.',
       pushTitle: 'Your 428-day best is safe',
       pushBody: 'Eight days away ended both streaks. Sixty seconds starts the next one.',
@@ -892,6 +1064,38 @@
   let lessonDone = false;
   let lessonFrom = 'comeback';
 
+  function paintStrip(stripId, labelId, spareId, srId, suppressSpare) {
+    const s = states[current];
+
+    document.getElementById(labelId).textContent = s.weekLabel;
+
+    const n = parseInt(s.spare, 10);
+    const spareText = n === 0 ? 'no spare days left'
+      : n === 1 ? '1 spare day left'
+      : n + ' spare days left';
+
+    const spareEl = document.getElementById(spareId);
+    spareEl.innerHTML = suppressSpare ? '' : ICON_SPARE + spareText;
+    spareEl.className = 'strip-spare' + (n === 0 ? ' none' : '');
+
+    document.getElementById(stripId).innerHTML = s.week.map(k =>
+      '<span class="wsday ' + k + '">' + (k === 'frozen' ? ICON_FREEZE : '') + '</span>'
+    ).join('');
+
+    const c = s.week.reduce((a, k) => { a[k] = (a[k] || 0) + 1; return a; }, {});
+    const bits = [];
+    if (c.done) bits.push(c.done + ' completed');
+    if (c.frozen) bits.push(c.frozen + (c.frozen === 1 ? ' day held by a freeze' : ' days held by freezes') + ', daily streak protected');
+    if (c.absorbed) bits.push(c.absorbed + (c.absorbed === 1 ? ' day absorbed by a spare day' : ' days absorbed by spare days') + ', week protected');
+    if (c.over) bits.push(c.over + (c.over === 1 ? ' day nothing was left to cover' : ' days nothing was left to cover'));
+    if (c.today) bits.push('today not done yet');
+    if (c.future) bits.push(c.future + ' days still to come');
+
+    const spareSentence = spareText.charAt(0).toUpperCase() + spareText.slice(1);
+    document.getElementById(srId).textContent =
+      s.weekLabel + '. ' + bits.join(', ') + '. ' + spareSentence + '.';
+  }
+
   function renderState() {
     const s = states[current];
 
@@ -923,6 +1127,8 @@
     document.getElementById('done-t2-num').className = 'tile-num ' + (s.t2num === '0' ? 'ended' : 'alive');
     document.getElementById('done-note').textContent = s.doneNote;
 
+    paintStrip('cb-strip', 'cb-strip-label', 'cb-strip-spare', 'cb-strip-sr', s.stripSpare === false);
+
     ['week1', 'save', 'short', 'long'].forEach(k =>
       document.getElementById('state-' + k).setAttribute('aria-pressed', String(current === k)));
 
@@ -942,9 +1148,13 @@
 
     document.getElementById('home-pill').textContent = s.pill;
 
-    const spare = document.getElementById('home-spare-num');
-    spare.textContent = s.spare;
-    spare.className = 'tile-num ' + (s.spare === '0' ? 'ended' : 'alive');
+    paintStrip('home-strip', 'home-strip-label', 'home-strip-spare', 'home-strip-sr');
+
+    const fz = parseInt(s.freezes, 10);
+    const fzEl = document.getElementById('home-freeze');
+    fzEl.innerHTML = ICON_FREEZE + (fz === 0 ? 'No freezes left'
+      : fz === 1 ? '1 freeze left' : fz + ' freezes left');
+    fzEl.className = 'tile-freeze' + (fz === 0 ? ' none' : '');
 
     document.getElementById('home-lesson-tag').textContent = lessonDone
       ? 'Today’s lesson — done'
@@ -1030,6 +1240,12 @@
 
   ['week1', 'save', 'short', 'long'].forEach(k =>
     document.getElementById('state-' + k).addEventListener('click', () => setState(k)));
+
+  document.getElementById('rules-h-freeze').innerHTML = ICON_FREEZE + 'Freezes';
+  document.getElementById('rules-h-spare').innerHTML = ICON_SPARE + 'Spare days';
+  document.getElementById('rules-key').innerHTML =
+    '<span class="k-freeze">' + ICON_FREEZE + 'Freezes</span> keep your <strong>daily streak</strong> going.<br>' +
+    '<span class="k-spare">' + ICON_SPARE + 'Spare days</span> keep your <strong>week streak</strong> going.';
 
   renderState();
   show('push');

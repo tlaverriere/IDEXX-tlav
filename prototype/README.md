@@ -98,6 +98,57 @@ Two copy decisions worth flagging for review: the best-ever row reads **"Best so
 
 **Copy in this state is a first draft for Lena to replace.** Per `docs/design-review.md`, the hero framing is hers to own.
 
+### The week strip
+
+*Added 2026-09-16. Appears on day 1 — that was a deliberate call, see the caveat below.*
+
+Seven marks, one per day of the user's signup-anchored week, on the home screen and the Comeback surface.
+
+| Mark | Means | Which protection fired |
+|---|---|---|
+| Filled green | Completed | — |
+| **Green snowflake** ❄ | Missed — the **daily streak** survived | **Freeze** (a spare day is also spent) |
+| **Solid slate** | Missed — daily streak gone, but the **week** held | **Spare day** |
+| Hollow, light border | Missed, and the week goal is gone too | Neither |
+| Dashed dark outline | Today, not done yet | — |
+| Faint dot | Still to come | — |
+
+### Making the two protections legible — 2026-09-16
+
+The confusion being solved: nothing told a user which streak each protection defends. Fixed three ways, in order of how much work each does.
+
+**1 · Position, which is the mechanism.** The **snowflake** lives in the daily-streak tile on home and on frozen days in the strip. The **spare tire** lives in the week-strip header. Each protection sits with the thing it defends, so the mapping is learned by location rather than by memorising a symbol.
+
+**2 · Two icons, drawn inline as SVG** so weight and colour match the palette rather than varying by platform like emoji.
+
+- **Snowflake = freeze.** Kept over an ice cube deliberately: a snowflake is nearly a glyph — radial, high-contrast, survives at 15px inside a 26px dot. An ice cube at that size is a rounded square. It is also the category convention, which matters because Tom arrived from Duolingo.
+- **Spare tire = spare day.** Chosen over a bowling ball because the bowling sense of "spare" is *recovery after a miss*, and a spare day is *reserve held in advance* — as in a spare tyre. Right sense, and the puncture connotation is an asset: life happens, you're equipped, you carry on. **It appears at label size only, never in the strip** — at 26px a tire is a dark ring with a hole, visually identical to the hollow "missed" mark.
+
+**3 · The strip's old single `saved` mark was split into `frozen` and `absorbed`.** Previously a spare day doing its job was invisible, because "daily streak died but the week held" looked the same as "nothing caught it." The long-tenure state now shows both protections failing in sequence — three snowflakes, then a spare day absorbing one, then two uncovered.
+
+**Cost, recorded honestly:** the strip went from five mark types to six. That is the legibility risk showing up inside the thing built to reduce it. Judged worth it because a spare day earning its keep was previously unrepresentable, but it is not free.
+
+**Also in the rules page:** a two-line key at the top — *"Freezes keep your daily streak going. Spare days keep your week streak going."* — plus the icons on both section headings.
+
+**Icons were chosen for Lena, not with her.** Deliberate call, same as the week-one copy. The rationale is above and she should get it rather than an apology.
+
+**Four design decisions in it worth knowing:**
+
+1. **A frozen day looks *saved*, not missed.** It is the visual form of "the app noticed" — the thing Tom said was absent. If a covered day looked like a failure with an asterisk, the strip would become a receipt.
+2. **Future days are faint, not empty slots.** Empty slots read as a countdown; faint reads as a week still being written.
+3. **It replaced the spare-days tile on home** rather than sitting beside it. Net concept count stays flat, which is the whole argument for it given legibility is the top recorded risk.
+4. **The pop animation only fires on the Comeback surface** (`#cb-strip`), not on every render of home. The relief moment belongs where the relief is. Suppressed under `prefers-reduced-motion`.
+
+The dots are `aria-hidden`; each strip carries an `sr-only` sentence — *"First week, day 5. 2 completed, 1 day caught by a freeze, 1 day missed, today not done yet, 2 days still to come. 2 spare days left."*
+
+**Two caveats.**
+
+**It takes a side in an unsettled argument.** Showing this from day 1 is what Amara asked for and what Priya's second profile asked for — and the opposite of Priya's first position (*"don't show me the safety net until I'm falling"*). **That tension is recorded as unresolved in `change_log.md`, and this visual resolves it by default.** Worth raising explicitly rather than letting it pass.
+
+**It is one step from the meter we deliberately didn't ship.** The 28-day block progress meter was rejected because it would be a second streak with a harsher reset. A seven-day strip is a different object — short, tolerant, no punishing reset — but the line is thin. **Boundary: week-scoped only. It must never show block progress.**
+
+**Note on the patterns:** each state's seven marks are authored to tell that state's story, not computed from a simulated calendar. They are illustrative, like every other number in this prototype. The truth table in `../docs/spec-readiness.md` is the authority.
+
 ### Notes for implementation
 
 - **The home screen's streak values are state-driven** as of 2026-09-16 (`dailyBefore` / `dailyAfter` per state). An earlier version hardcoded them to `0`/`1` and contradicted the completion screen in the `save` state. If you are reading this file as a behavioural reference, that is the one place it previously lied.
