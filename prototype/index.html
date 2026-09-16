@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Streakly — Comeback Screen Prototype</title>
+<style>
+  :root {
+    --bg: #edeae5;
+    --surface: #ffffff;
+    --ink: #16181d;
+    --muted: #6b7280;
+    --line: #e5e3df;
+    --alive: #1f7a5a;
+    --alive-soft: #e8f3ee;
+    --ended: #4b5563;
+    --ended-soft: #f1f2f4;
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    height: 100dvh;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 16px 22px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .harness {
+    width: 100%;
+    max-width: 390px;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .harness-note {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--muted);
+    text-align: center;
+    margin: 0 0 12px;
+  }
+
+  .harness-note strong { color: var(--ink); }
+
+  .phone {
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: 780px;
+    background: var(--surface);
+    border-radius: 28px;
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 32px rgba(22, 24, 29, 0.10);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .statusbar {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px 4px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  .screen {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 12px 20px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .screen[hidden] { display: none; }
+
+  h1 {
+    font-size: 23px;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin: 6px 0 0;
+  }
+
+  h1[tabindex="-1"]:focus,
+  .home-title[tabindex="-1"]:focus { outline: none; }
+
+  .eyebrow {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 4px 0 0;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+
+  .card-alive {
+    background: var(--alive-soft);
+    border-color: transparent;
+    margin-top: 20px;
+    padding: 18px;
+  }
+
+  .card-memento {
+    background: var(--ended-soft);
+    border-color: transparent;
+    margin-top: 20px;
+    padding: 18px;
+  }
+
+  .card-memento .label,
+  .card-memento .metric-num,
+  .card-memento .metric-unit { color: var(--ended); }
+
+  .card-memento p.detail { color: #3f4650; }
+
+  .states {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin: 0 0 12px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .states .state-btn {
+    width: auto;
+    flex: 1 1 0;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 7px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #5f5a4e;
+  }
+
+  .states .state-btn[aria-pressed="true"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+
+  .label {
+    font-size: 11px;
+    font-weight: 650;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--alive);
+    margin: 0;
+  }
+
+  .metric {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 6px 0 0;
+  }
+
+  .metric-num {
+    font-size: 44px;
+    font-weight: 680;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--alive);
+  }
+
+  .metric-unit {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--alive);
+  }
+
+  .card-alive p.detail {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #2f5f4e;
+    margin: 8px 0 0;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 3px;
+    background: #e2ded7;
+    border-radius: 11px;
+    padding: 3px;
+    margin: 0 0 12px;
+  }
+
+  .tab {
+    flex: 1 1 0;
+    width: auto;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5f5a4e;
+  }
+
+  .tab[aria-selected="true"] {
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: 0 1px 3px rgba(22, 24, 29, 0.09);
+  }
+
+  .back {
+    width: auto;
+    align-self: flex-start;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 560;
+    padding: 4px 0;
+  }
+
+  .lede {
+    font-size: 15px;
+    line-height: 1.55;
+    margin: 10px 0 0;
+  }
+
+  .rules-h {
+    font-size: 11px;
+    font-weight: 680;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 24px 0 8px;
+  }
+
+  .rules {
+    margin: 0;
+    padding-left: 19px;
+  }
+
+  .rules li {
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 7px;
+  }
+
+  .rules li::marker { color: #b9b4a9; }
+
+  .rules-note {
+    margin-top: 24px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    background: var(--ended-soft);
+    font-size: 14px;
+    line-height: 1.55;
+    color: #3f4650;
+  }
+
+  .link-quiet {
+    width: auto;
+    align-self: flex-start;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 560;
+    color: var(--alive);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .phone.locked { background: #14201b; }
+  .phone.locked .statusbar { color: rgba(255, 255, 255, 0.7); }
+
+  .screen-lock { background: #14201b; }
+
+  .lock-time {
+    font-size: 46px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-align: center;
+    margin: 22px 0 0;
+  }
+
+  .lock-date {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: center;
+    margin: 2px 0 0;
+  }
+
+  .push {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--ink);
+    border: none;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-weight: 400;
+  }
+
+  .push-app {
+    display: block;
+    font-size: 11px;
+    font-weight: 680;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .push-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 660;
+    line-height: 1.3;
+    margin-top: 5px;
+  }
+
+  .push-body {
+    display: block;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #3f4650;
+    margin-top: 3px;
+  }
+
+  .lock-hint {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    margin: 0;
+  }
+
+  .counted {
+    margin-top: 18px;
+    background: var(--alive-soft);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #2f5f4e;
+  }
+
+  .counted strong { color: var(--alive); }
+
+  .breakdown {
+    margin-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .row-label { color: var(--muted); }
+  .row-value { font-weight: 600; text-align: right; flex: 0 0 auto; }
+  .row-value.ended { color: var(--ended); }
+  .row-value.alive { color: var(--alive); }
+
+  .spacer { flex: 1 1 auto; min-height: 18px; }
+
+  .actions { flex: 0 0 auto; }
+
+  button {
+    font: inherit;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    padding: 15px 16px;
+    font-size: 16px;
+    font-weight: 620;
+    transition: opacity 0.15s ease;
+  }
+
+  button:hover { opacity: 0.88; }
+  button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  .btn-primary {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .btn-primary .sub {
+    display: block;
+    font-size: 13px;
+    font-weight: 450;
+    opacity: 0.72;
+    margin-top: 2px;
+  }
+
+  .btn-quiet {
+    background: transparent;
+    color: var(--muted);
+    border-color: transparent;
+    font-weight: 520;
+    font-size: 15px;
+    padding: 13px 16px;
+    margin-top: 4px;
+  }
+
+  .btn-outline {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--line);
+  }
+
+  .progress {
+    display: flex;
+    gap: 6px;
+    margin: 14px 0 0;
+  }
+
+  .pip {
+    height: 4px;
+    flex: 1 1 0;
+    border-radius: 2px;
+    background: var(--line);
+  }
+
+  .pip.on { background: var(--ink); }
+
+  .placeholder {
+    margin-top: 20px;
+    border: 1px dashed #c9c5bd;
+    border-radius: var(--radius);
+    padding: 18px;
+    background: #faf9f7;
+  }
+
+  .placeholder-tag {
+    font-size: 10px;
+    font-weight: 680;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9a948a;
+    margin: 0 0 10px;
+  }
+
+  .placeholder p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .home-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .home-title { font-size: 19px; font-weight: 650; margin: 0; }
+
+  .pill {
+    font-size: 12px;
+    font-weight: 620;
+    color: var(--alive);
+    background: var(--alive-soft);
+    border-radius: 999px;
+    padding: 6px 11px;
+  }
+
+  .tiles { display: flex; gap: 10px; margin-top: 16px; }
+
+  .tile {
+    flex: 1 1 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px;
+  }
+
+  .tile-num { font-size: 26px; font-weight: 680; line-height: 1; letter-spacing: -0.02em; }
+  .tile-num.ended { color: var(--ended); }
+  .tile-num.alive { color: var(--alive); }
+  .tile-label { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.35; }
+
+  .quiet-note {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 16px 0 0;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="harness">
+  <p class="harness-note">
+    <strong>Prototype</strong> — Streakly Comeback screen. Starts at the notification, because that is the real entry point.
+    Three trigger states: the last day a streak can still be saved, the day after it's lost, and the long-tenure case
+    where both streaks are gone. Lesson content is placeholder.
+  </p>
+
+  <div class="tabs" role="tablist" aria-label="Prototype sections">
+    <button class="tab" id="tab-walk" role="tab" aria-selected="true">Walkthrough</button>
+    <button class="tab" id="tab-rules" role="tab" aria-selected="false">How it works</button>
+  </div>
+
+  <div class="states">
+    <button class="state-btn" id="state-save" aria-pressed="true">Day 14 · at risk</button>
+    <button class="state-btn" id="state-short" aria-pressed="false">Day 15 · lost it</button>
+    <button class="state-btn" id="state-long" aria-pressed="false">14-month · 8 days</button>
+  </div>
+
+  <div class="phone">
+    <div class="statusbar">
+      <span>9:41</span>
+      <span>Streakly</span>
+    </div>
+
+    <!-- 0 · Push notification (entry point) -->
+    <section class="screen screen-lock" id="view-push" aria-labelledby="push-h">
+      <h1 class="sr-only" id="push-h" tabindex="-1">Lock screen notification</h1>
+      <p class="lock-time">9:41</p>
+      <p class="lock-date">Thursday</p>
+
+      <button class="push" id="open-push">
+        <span class="push-app">STREAKLY · now</span>
+        <span class="push-title" id="push-title">Your week streak is still going</span>
+        <span class="push-body" id="push-body">You missed two days — both came out of your spare days. Sixty seconds picks it back up.</span>
+      </button>
+
+      <div class="spacer"></div>
+      <p class="lock-hint">Tap the notification</p>
+    </section>
+
+    <!-- 1 · Comeback -->
+    <section class="screen" id="view-comeback" hidden aria-labelledby="comeback-h">
+      <p class="eyebrow" id="cb-eyebrow">You've been away two days.</p>
+      <h1 id="comeback-h" tabindex="-1">Your week streak is still going.</h1>
+
+      <div class="card card-alive" id="cb-card">
+        <p class="label" id="cb-label">Week streak</p>
+        <p class="metric">
+          <span class="metric-num" id="cb-num">2</span>
+          <span class="metric-unit" id="cb-unit">weeks</span>
+        </p>
+        <p class="detail" id="cb-detail">Both missed days came out of your spare days, so the week still counts. You have <strong>2 spare days</strong> left.</p>
+      </div>
+
+      <div class="breakdown" id="cb-rows"></div>
+
+      <div class="spacer"></div>
+
+      <div class="actions">
+        <button class="btn-primary" id="start-lesson">
+          <span id="cta-main">Pick it back up</span>
+          <span class="sub" id="cta-sub">One 60-second lesson</span>
+        </button>
+        <button class="btn-quiet" id="dismiss">Not today</button>
+      </div>
+    </section>
+
+    <!-- 2 · Lesson -->
+    <section class="screen" id="view-lesson" hidden aria-labelledby="lesson-h">
+      <p class="eyebrow">60-second lesson</p>
+      <h1 id="lesson-h" tabindex="-1">Quick warm-up</h1>
+      <div class="progress" aria-hidden="true">
+        <span class="pip on" id="pip-1"></span>
+        <span class="pip" id="pip-2"></span>
+      </div>
+
+      <div class="placeholder">
+        <p class="placeholder-tag">Lesson content — placeholder</p>
+        <p id="lesson-body">Card 1 of 2. Real lesson content comes from the user's track; the track is not specified in the brief, so nothing is invented here.</p>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="actions">
+        <button class="btn-primary" id="lesson-next">Got it</button>
+        <button class="btn-quiet" id="lesson-back">Back</button>
+      </div>
+    </section>
+
+    <!-- 3 · Done -->
+    <section class="screen" id="view-done" hidden aria-labelledby="done-h">
+      <p class="eyebrow" id="done-eyebrow">Done — 41 seconds.</p>
+      <h1 id="done-h" tabindex="-1">You're back on.</h1>
+
+      <p class="counted"><strong>That counted as today's lesson.</strong> Nothing else due today.</p>
+
+      <div class="tiles">
+        <div class="tile">
+          <div class="tile-num alive" id="done-t1-num">1</div>
+          <div class="tile-label" id="done-t1-label">Daily streak<br>Counts from today</div>
+        </div>
+        <div class="tile">
+          <div class="tile-num alive" id="done-t2-num">2</div>
+          <div class="tile-label" id="done-t2-label">Week streak<br>Unbroken</div>
+        </div>
+      </div>
+
+      <p class="quiet-note" id="done-note">Your 12-day best stays on your profile. Tomorrow makes the daily streak 2.</p>
+
+      <p class="sr-only" role="status" id="done-announce"></p>
+
+      <div class="spacer"></div>
+
+      <div class="actions">
+        <button class="btn-outline" id="to-home">Go to today</button>
+      </div>
+    </section>
+
+    <!-- 4 · Dismissed home -->
+    <section class="screen" id="view-home" hidden aria-labelledby="home-h">
+      <div class="home-head">
+        <h1 class="home-title" id="home-h" tabindex="-1">Today</h1>
+        <span class="pill" id="home-pill">2-week streak</span>
+      </div>
+
+      <div class="tiles">
+        <div class="tile">
+          <div class="tile-num ended" id="home-streak-num">0</div>
+          <div class="tile-label" id="home-streak-label">Daily streak<br>Best: 12 days</div>
+        </div>
+        <div class="tile">
+          <div class="tile-num alive" id="home-spare-num">2</div>
+          <div class="tile-label">Spare days<br>Left this week</div>
+        </div>
+      </div>
+
+      <div class="placeholder">
+        <p class="placeholder-tag" id="home-lesson-tag">Today's lesson — placeholder</p>
+        <p id="home-lesson-body">Five minutes. Content comes from the user's track.</p>
+      </div>
+
+      <p class="quiet-note">We won't show you that comeback screen again.</p>
+
+      <button class="link-quiet" id="home-rules">How streaks work</button>
+
+      <div class="spacer"></div>
+
+      <div class="actions">
+        <button class="btn-primary" id="home-start">Start today's lesson</button>
+        <button class="btn-quiet" id="replay">Replay prototype from the start</button>
+      </div>
+    </section>
+
+    <!-- 5 · How streaks work -->
+    <section class="screen" id="view-rules" hidden aria-labelledby="rules-h">
+      <button class="back" id="rules-back">&lsaquo; Back</button>
+      <h1 id="rules-h" tabindex="-1">How streaks work</h1>
+      <p class="lede">Your <strong>daily streak</strong> measures perfection. Your <strong>week streak</strong> measures consistency. They're kept separate on purpose — losing one doesn't touch the other.</p>
+
+      <p class="rules-h">Daily streak</p>
+      <ul class="rules">
+        <li>Counts consecutive days with a completed lesson.</li>
+        <li>One missed day ends it — unless you have a freeze.</li>
+        <li>Your best ever stays on your profile for good.</li>
+        <li>Protection can never be bought. Only earned.</li>
+      </ul>
+
+      <p class="rules-h">Freezes</p>
+      <ul class="rules">
+        <li>A freeze covers one missed day and keeps your daily streak alive.</li>
+        <li>Applied automatically. We'll tell you when one gets used.</li>
+        <li>You earn one for every <strong>4 weeks with no missed days at all</strong>.</li>
+        <li>You start with one, and get another at the start of week 5 and week 9. After that they're earned only.</li>
+        <li>You can hold up to <strong>7</strong> — enough to cover a week away.</li>
+        <li>A day covered by a freeze still counts as a missed day for your week streak.</li>
+        <li>A frozen day doesn't count toward earning your next freeze.</li>
+      </ul>
+
+      <p class="rules-h">Week streak</p>
+      <ul class="rules">
+        <li>Counts consecutive weeks where you hit your weekly goal.</li>
+        <li>The goal: <strong>miss no more than one day</strong>, plus any spare days you've saved.</li>
+        <li>Your weeks run from the day you joined — not Monday to Sunday.</li>
+      </ul>
+
+      <p class="rules-h">Spare days</p>
+      <ul class="rules">
+        <li>You start with <strong>3</strong>.</li>
+        <li>Any week you don't use your allowance, it banks — up to 3.</li>
+        <li>Spent automatically when you need them.</li>
+        <li>With all 3 saved you can miss 4 days in one week and still keep your week streak.</li>
+      </ul>
+
+      <p class="rules-h">Last-gasp save</p>
+      <ul class="rules">
+        <li>Miss your weekly goal and you can commit to <strong>7 days in a row</strong> to save your week streak.</li>
+        <li>Entirely your choice. If you don't finish the run, it costs you nothing.</li>
+        <li>Four per year.</li>
+      </ul>
+
+      <p class="rules-note">Neither streak protects against not showing up at all. That part's still on you — but a missed day here and there was never meant to undo your work.</p>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  const views = {
+    push:     { el: document.getElementById('view-push'),     h: 'push-h' },
+    comeback: { el: document.getElementById('view-comeback'), h: 'comeback-h' },
+    lesson:   { el: document.getElementById('view-lesson'),   h: 'lesson-h' },
+    done:     { el: document.getElementById('view-done'),     h: 'done-h' },
+    home:     { el: document.getElementById('view-home'),     h: 'home-h' },
+    rules:    { el: document.getElementById('view-rules'),    h: 'rules-h' }
+  };
+
+  let lastWalk = 'push';
+
+  function show(name) {
+    Object.values(views).forEach(v => { v.el.hidden = true; });
+    views[name].el.hidden = false;
+    views[name].el.scrollTop = 0;
+    if (name !== 'rules') lastWalk = name;
+
+    document.querySelector('.phone').classList.toggle('locked', name === 'push');
+    document.getElementById('tab-rules').setAttribute('aria-selected', String(name === 'rules'));
+    document.getElementById('tab-walk').setAttribute('aria-selected', String(name !== 'rules'));
+
+    document.getElementById(views[name].h).focus();
+  }
+
+  const lessonCards = [
+    'Card 1 of 2. Real lesson content comes from the user’s track; the track is not specified in the brief, so nothing is invented here.',
+    'Card 2 of 2. Same placeholder. In the real thing this is a single review item sized to finish inside a minute.'
+  ];
+
+  const states = {
+    save: {
+      eyebrow: 'Yesterday was covered by your freeze.',
+      headline: 'Today keeps your 12-day streak.',
+      pushTitle: 'Today keeps your 12-day streak',
+      pushBody: 'Your freeze covered yesterday. One lesson today and it carries on.',
+      alive: true,
+      cardLabel: 'Daily streak',
+      cardNum: '12',
+      cardUnit: 'days',
+      cardDetail: 'Still going. Your freeze absorbed yesterday, and it was your last one — so <strong>today is the day that keeps this</strong>.',
+      rows: [
+        ['Yesterday — covered by your freeze', 'Saved', 'alive'],
+        ['Freezes left', '0', 'ended'],
+        ['Week streak', '2 weeks', 'alive'],
+        ['Spare days left', '3', 'alive']
+      ],
+      cta: 'Do today’s lesson', ctaSub: '60 seconds keeps it',
+      doneEyebrow: 'Done — 38 seconds.',
+      doneHeadline: 'You kept it.',
+      t1num: '13', t1label: 'Daily streak<br>Still going',
+      t2num: '2', t2label: 'Week streak<br>Unbroken',
+      doneNote: 'Thirteen days. Your freeze is used up — you’ll earn another after four clean weeks.',
+      best: '12 days',
+      pill: '2-week streak',
+      spare: '3'
+    },
+    short: {
+      eyebrow: 'You’ve been away two days.',
+      headline: 'Your week streak is still going.',
+      pushTitle: 'Your week streak is still going',
+      pushBody: 'You missed two days — both came out of your spare days. Sixty seconds picks it back up.',
+      alive: true,
+      cardLabel: 'Week streak',
+      cardNum: '2',
+      cardUnit: 'weeks',
+      cardDetail: 'Both missed days came out of your spare days, so the week still counts. You have <strong>2 spare days</strong> left.',
+      rows: [
+        ['Tuesday — covered by your freeze', 'Saved', 'alive'],
+        ['Wednesday — no freeze left', 'Streak ended', 'ended'],
+        ['Daily streak', '0 days', 'ended'],
+        ['Your best ever', '12 days', '']
+      ],
+      cta: 'Pick it back up', ctaSub: 'One 60-second lesson',
+      doneEyebrow: 'Done — 41 seconds.',
+      doneHeadline: 'You’re back on.',
+      t1num: '1', t1label: 'Daily streak<br>Counts from today',
+      t2num: '2', t2label: 'Week streak<br>Unbroken',
+      doneNote: 'Your 12-day best stays on your profile. Tomorrow makes the daily streak 2.',
+      best: '12 days',
+      pill: '2-week streak',
+      spare: '2'
+    },
+    long: {
+      eyebrow: 'You’ve been away eight days.',
+      headline: 'Your 428-day best is safe.',
+      pushTitle: 'Your 428-day best is safe',
+      pushBody: 'Eight days away ended both streaks. Sixty seconds starts the next one.',
+      alive: false,
+      cardLabel: 'Best ever',
+      cardNum: '428',
+      cardUnit: 'days',
+      cardDetail: 'Your seven freezes covered a week. The eighth day ended the daily streak, and the week streak went with it. <strong>Nothing is left running.</strong>',
+      rows: [
+        ['Freezes used', '7 of 7', 'ended'],
+        ['Week streak', '0 weeks', 'ended'],
+        ['Daily streak', '0 days', 'ended'],
+        ['Your best ever', '428 days', '']
+      ],
+      cta: 'Start again', ctaSub: 'One 60-second lesson',
+      doneEyebrow: 'Done — 41 seconds.',
+      doneHeadline: 'You’re back on.',
+      t1num: '1', t1label: 'Daily streak<br>Counts from today',
+      t2num: '0', t2label: 'Week streak<br>Starts next week',
+      doneNote: 'Your 428-day best stays on your profile. Tomorrow makes the daily streak 2.',
+      best: '428 days',
+      pill: 'No week streak',
+      spare: '0'
+    }
+  };
+
+  let current = 'save';
+  let step = 0;
+  let lessonDone = false;
+
+  function renderState() {
+    const s = states[current];
+
+    document.getElementById('push-title').textContent = s.pushTitle;
+    document.getElementById('push-body').textContent = s.pushBody;
+
+    document.getElementById('cb-eyebrow').textContent = s.eyebrow;
+    document.getElementById('comeback-h').textContent = s.headline;
+    document.getElementById('cb-card').className = 'card ' + (s.alive ? 'card-alive' : 'card-memento');
+    document.getElementById('cb-label').textContent = s.cardLabel;
+    document.getElementById('cb-num').textContent = s.cardNum;
+    document.getElementById('cb-unit').textContent = s.cardUnit;
+    document.getElementById('cb-detail').innerHTML = s.cardDetail;
+
+    document.getElementById('cb-rows').innerHTML = s.rows.map(([label, value, tone]) =>
+      '<div class="row"><span class="row-label">' + label +
+      '</span><span class="row-value ' + tone + '">' + value + '</span></div>'
+    ).join('');
+
+    document.getElementById('cta-main').textContent = s.cta;
+    document.getElementById('cta-sub').textContent = s.ctaSub;
+
+    document.getElementById('done-eyebrow').textContent = s.doneEyebrow;
+    document.getElementById('done-h').textContent = s.doneHeadline;
+    document.getElementById('done-t1-num').textContent = s.t1num;
+    document.getElementById('done-t1-label').innerHTML = s.t1label;
+    document.getElementById('done-t2-num').textContent = s.t2num;
+    document.getElementById('done-t2-label').innerHTML = s.t2label;
+    document.getElementById('done-t2-num').className = 'tile-num ' + (s.t2num === '0' ? 'ended' : 'alive');
+    document.getElementById('done-note').textContent = s.doneNote;
+
+    ['save', 'short', 'long'].forEach(k =>
+      document.getElementById('state-' + k).setAttribute('aria-pressed', String(current === k)));
+
+    renderHome();
+  }
+
+  function renderHome() {
+    const num = document.getElementById('home-streak-num');
+    num.textContent = lessonDone ? '1' : '0';
+    num.className = 'tile-num ' + (lessonDone ? 'alive' : 'ended');
+
+    document.getElementById('home-streak-label').innerHTML = lessonDone
+      ? 'Daily streak<br>Counts from today'
+      : 'Daily streak<br>Best: ' + states[current].best;
+
+    document.getElementById('home-pill').textContent = states[current].pill;
+
+    const spare = document.getElementById('home-spare-num');
+    spare.textContent = states[current].spare;
+    spare.className = 'tile-num ' + (states[current].spare === '0' ? 'ended' : 'alive');
+
+    document.getElementById('home-lesson-tag').textContent = lessonDone
+      ? 'Today’s lesson — done'
+      : 'Today’s lesson — placeholder';
+
+    document.getElementById('home-lesson-body').textContent = lessonDone
+      ? 'Your 60-second comeback lesson counted as today. Nothing else due.'
+      : 'Five minutes. Content comes from the user’s track.';
+
+    document.getElementById('home-start').hidden = lessonDone;
+  }
+
+  function renderLesson() {
+    document.getElementById('lesson-body').textContent = lessonCards[step];
+    document.getElementById('pip-1').classList.toggle('on', step >= 0);
+    document.getElementById('pip-2').classList.toggle('on', step >= 1);
+    document.getElementById('lesson-next').textContent = step === lessonCards.length - 1 ? 'Finish' : 'Got it';
+  }
+
+  document.getElementById('start-lesson').addEventListener('click', () => {
+    step = 0;
+    renderLesson();
+    show('lesson');
+  });
+
+  document.getElementById('lesson-next').addEventListener('click', () => {
+    if (step < lessonCards.length - 1) {
+      step += 1;
+      renderLesson();
+    } else {
+      lessonDone = true;
+      show('done');
+      document.getElementById('done-announce').textContent =
+        'Counted as today’s lesson. Daily streak restarted at 1 day. Week streak still 2 weeks.';
+    }
+  });
+
+  document.getElementById('lesson-back').addEventListener('click', () => {
+    if (step > 0) {
+      step -= 1;
+      renderLesson();
+    } else {
+      show('comeback');
+    }
+  });
+
+  document.getElementById('dismiss').addEventListener('click', () => {
+    renderHome();
+    show('home');
+  });
+
+  document.getElementById('to-home').addEventListener('click', () => {
+    renderHome();
+    show('home');
+  });
+
+  document.getElementById('home-start').addEventListener('click', () => {
+    step = 0;
+    renderLesson();
+    show('lesson');
+  });
+
+  document.getElementById('open-push').addEventListener('click', () => show('comeback'));
+
+  document.getElementById('tab-rules').addEventListener('click', () => show('rules'));
+  document.getElementById('tab-walk').addEventListener('click', () => show(lastWalk));
+  document.getElementById('home-rules').addEventListener('click', () => show('rules'));
+  document.getElementById('rules-back').addEventListener('click', () => show(lastWalk));
+
+  document.getElementById('replay').addEventListener('click', () => {
+    lessonDone = false;
+    renderHome();
+    show('push');
+  });
+
+  function setState(key) {
+    current = key;
+    lessonDone = false;
+    renderState();
+    show('push');
+  }
+
+  ['save', 'short', 'long'].forEach(k =>
+    document.getElementById('state-' + k).addEventListener('click', () => setState(k)));
+
+  renderState();
+  show('push');
+</script>
+
+</body>
+</html>

@@ -53,13 +53,17 @@ The hypothesis still rests on the two weakest rows — Raj's figure and v2 causa
 
 **4. The problem is break-shaped.** *Added 2026-09-14.* The hypothesis and the Comeback concept both trigger on a break. Two sources now suggest a share of churn is drift, not reset — users who never break anything and simply fade. If that share is material in week 1, a break-triggered fix addresses only part of the loss and the problem statement needs widening before we scope a solution.
 
-## Candidate interventions — parked
+## Approved interventions
+
+> **Approved 2026-09-16.** Marcus approved **Option C** — Candidate 1 (Comeback Screen) and Candidate 3 (Freeze + Weekly Streak) ship together, with the **release gated on Query 1** rather than assumed by it.
+>
+> The "parked" framing below is superseded. **The risks and open questions are not** — every one of them is still live, and none was closed by the approval. Candidate 2 remains superseded: it was replaced by Candidate 3, not approved.
 
 ### Candidate 1 — Comeback screen (Lena)
 
 Lena's **Comeback screen**: shown when a streak breaks, replacing the cold reset with the user's best-streak stat and one 60-second comeback lesson to rebuild momentum. Raj confirms it is buildable with existing data sources; targeting logic is unbuilt.
 
-> **Amended 2026-09-14 — the one-tap streak freeze has been removed from this concept.** Candidate 3 eliminates the freeze entirely, so the third component of Lena's original sketch no longer exists. **Lena should hear this from Trevor directly rather than discover it in a document** — it is her concept and the change is material. What remains of the concept is the *acknowledgment* half, which is also the half the competitive scan says nobody owns.
+> **Amended 2026-09-14 — the one-tap streak freeze has been removed from this concept.** Candidate 3 eliminates the freeze entirely, so the third component of Lena's original sketch no longer exists. **Done 2026-09-16 — Trevor told Lena directly.** *(Her reaction is not yet recorded here.)* It is her concept and the changes were material: the freeze affordance removed, the concept parked and un-parked, and a pre-emptive trigger added that changes what the surface is. What remains of the concept is the *acknowledgment* half, which is also the half the competitive scan says nobody owns.
 
 Parked on purpose, for three reasons. It addresses only the post-break half of the problem, which condition 3 has not resolved. It presumes the causal story in condition 1, which is unverified. And as of 2026-09-14 it has a known coverage gap: it fires on a break, so it cannot reach the drift-path users in condition 4 — including the only week-1 user we have interviewed.
 
@@ -67,7 +71,7 @@ Worth stating plainly, because the research cuts both ways: the *problem* it tar
 
 **Competitive support — added 2026-09-14.** The scan found **no competitor running a designed return session as a standing surface**; the position is unowned. Duolingo sized it inadvertently: a one-time June 2026 offer to restore a lapsed user's longest-ever streak for three lessons drew **15.4M revivals, roughly 8M from users with no active streak**, which management called evidence of the scale of the win-back opportunity — then left it as a campaign rather than building it. Caveat carried forward: part of why this space looks empty is that no company documents its post-miss screen, so "unowned" is partly "not observable by desk research." See `../02-research/competitive-matrix.md`, Gap 1.
 
-It loses nothing by waiting for Thursday.
+**Approved 2026-09-16** as part of Option C. The coverage gap above is unchanged by the approval: it fires on a break, so it still cannot reach a pre-break week-1 user or the drift path. Shipping it does not close either.
 
 ### Candidate 2 — 26-of-30 goal, alongside the streak freeze · **SUPERSEDED**
 
@@ -150,7 +154,9 @@ Because weeks are signup-anchored, **no partial weeks exist** — every week, fo
 11. **Three seeds buy three buffer days across 12 weeks — they do not remove the cliff.** *Revised 2026-09-14 from a single seed.* A week-1 user holds 1 freeze plus 4 weekly misses, so their **first** missed day costs nothing visible: the daily streak is frozen and the weekly goal absorbs the miss. That directly answers the evidenced week-1 fear of losing *"everything I've built."* But the **second** miss inside a block still resets the daily streak in full. Intentional — the daily streak is the perfection counter — and worth stating precisely so the seeds aren't credited with more than they do.
 12. **The droughts are shorter, but a new cliff appears at day 85.** Burning a seed on day 3 also breaks block 1's perfection, leaving ~26 days unprotected until the block-2 seed lands on day 29 — better than the ~53-day gap a single seed produced, and there are now three separate chances. **The new problem is what happens when seeding stops.** A user who has not assembled 28 perfect days by day 84 drops to **zero protection, permanently**, until they do. The training wheels come off on a fixed date rather than when the habit is actually formed — and the users still struggling at week 12 are precisely the ones who lose them.
 
-**Still gated on Thursday.** This is a better-specified candidate than the other two, which is precisely the risk named in `../CLAUDE.md`: the most tangible thing in the room attracts commitment while the problem underneath stays unvalidated. The counterfactual replay still gates it, and nothing here establishes that v2 caused the decline.
+**Approved 2026-09-16; release gated on Query 1.** Worth recording plainly: the risk named in `../CLAUDE.md` did materialise. The most tangible thing in the room attracted commitment while the problem underneath stayed unvalidated. The gate is the safeguard accepted in exchange, which makes running Query 1 — and honouring its answer — the thing that determines whether the approval was sound.
+
+Nothing here establishes that v2 caused the decline, and all twelve risks above remain live.
 
 ### Not a candidate — table-stakes gaps surfaced by the scan
 

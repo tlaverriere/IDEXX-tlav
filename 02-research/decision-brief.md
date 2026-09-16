@@ -1,7 +1,15 @@
 # What We're Trying to Solve — and What We'd Do About It
 
-**For:** Marcus, Head of Product · **From:** Trevor · **2026-09-14** · **Pre-read for Thursday**
+**For:** Marcus, Head of Product · **From:** Trevor · **2026-09-14** · *originally a pre-read for Thursday*
 *Revision 5. You asked for the problem before the solutions, so the problem comes first and the recommendation comes last.*
+
+> ## Outcome — approved 2026-09-16
+>
+> Marcus approved the recommendation as written: **Option C as the direction**, validation funded, and the **release gated on Query 1** rather than assumed by it.
+>
+> **Kept as the document of record**, unedited below this banner. It shows what was approved and on what evidence — including Part 1's *"What we do not know,"* which the approval did not change and does not retire.
+>
+> **Not settled at the meeting, and still needed:** an owner and date for Query 1, owners for both fast tracks, a recovery target, and whether to instrument for attribution.
 
 **Sources:** `interview-synthesis.md` (n=3), `nps-analysis.md` (10 verbatims), `competitive-matrix.md` (5 competitors + 1 control), external user forums, and `../01-orient/strategy.md` for the full design. **On the external voice:** Reddit is inaccessible from our research tooling, so that layer is Hacker News and the Clozemaster forum — real users, different platform. Labelled **external voice** throughout, never presented as Reddit.
 

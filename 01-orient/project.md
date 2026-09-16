@@ -16,19 +16,32 @@ Recover the 9-point Day-7 retention loss. No target number or date has been set 
 
 ## Bet
 
-Not yet placed. The team's working hypothesis is that breaking a streak reads as failure and offers no graceful way back (see `strategy.md`). The candidate intervention is Lena's Comeback screen, deliberately parked until the problem is validated.
+**Placed 2026-09-16.** Marcus approved **Option C** — ship all three features together:
+
+- **Comeback Screen** (Lena) — best-streak stat plus one 60-second comeback lesson, shown when the daily streak breaks.
+- **Freeze** — earned-only, auto-applied, protects the daily streak from a single miss.
+- **Weekly Streak** — miss up to 1 day a week, with a miss bank and an opt-in recovery run.
+
+The bet in one line: *the daily streak should stay honest about perfection, and a second currency should carry consistency — so a missed day stops meaning you lost everything.*
+
+**The release is gated on Query 1**, not assumed by it. Full design in `strategy.md`.
 
 ## Not doing
 
-- Committing to a solution before the problem is agreed.
 - Generic "keep going!" motivation.
-- Anything requiring new data sources — the candidate concept is buildable on what exists today.
+- Anything requiring new data sources — all three features are buildable on what exists today.
+- Purchasable protection, or protection gifted to established users. Earned-only is the line `strategy.md` says to defend.
+- Weekly leaderboards or leagues — signup-anchored weeks don't align across users.
+
+*Removed 2026-09-16: "committing to a solution before the problem is agreed." We have now done exactly that, deliberately, with the Query 1 gate as the safeguard. Leaving the old line in place would be dishonest.*
 
 ## Current phase
 
-**Discovery, day 1.** We are validating the problem, not designing the fix. Two questions gate everything: did v2 actually cause the decline, and does Raj's churn finding survive scrutiny.
+**Direction approved, release gated.** Design, copy, instrumentation groundwork and both fast tracks proceed. **Production streak-accounting changes hold** until Query 1 lands.
 
-Thursday's meeting is the alignment gate. Pre-read is `problem-brief.md`.
+Query 1 decomposes the 9-point decline by week-1 behaviour. If the loss sits with users who never established a streak at all, this is an onboarding problem and **none of the three approved features addresses it.** Spec in `validation-plan.md`; the feature-level replay is `../05-decide/counterfactual-replay.md`.
+
+**Unassigned and needed:** an owner and date for Query 1, owners for both fast tracks, a recovery target, and a decision on attribution instrumentation.
 
 ## Squad and stakeholders
 

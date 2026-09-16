@@ -8,7 +8,9 @@
 
 **Core metric: Day-7 retention.** This is the north star, which makes the current situation urgent rather than a slow leak.
 
-**Current focus.** Day-7 retention is 39%, down from 48% following the v2 streak redesign. The loss concentrates in users who break a streak in week 1. Working hypothesis: breaking a streak reads as failure — the counter resets, the app doesn't acknowledge it, and the "you lost your streak" push lands at peak quit risk — so users go passive with no graceful way back.
+**Current focus.** Day-7 retention is 39%, down from 48% following the v2 streak redesign. The loss is *believed* to concentrate in users who break a streak in week 1 — **unvalidated**, and precisely what Query 1 tests. Working hypothesis: breaking a streak reads as failure — the counter resets, the app doesn't acknowledge it, and the "you lost your streak" push lands at peak quit risk — so users go passive with no graceful way back.
+
+**Phase, as of 2026-09-16:** direction approved, release gated on Query 1. Design, copy, instrumentation groundwork and both fast tracks proceed; **production streak-accounting changes hold** until Query 1 lands.
 
 ## Me and the Squad
 
@@ -24,15 +26,24 @@
 
 ## The Tension I'm Navigating
 
-A tangible solution is competing with an unvalidated problem. Lena's Comeback screen is concrete, buildable, and emotionally right — and the causal story beneath it is unverified. My job is holding the room in the uncomfortable place long enough to check whether the v2 redesign actually caused the decline, and whether Raj's churn finding survives scrutiny.
+*Shifted 2026-09-16.* The old tension — a tangible solution competing with an unvalidated problem — resolved when Marcus approved Option C. The replacement is narrower and sharper: **the direction is approved and the problem is still unvalidated.**
 
-This has a clock on it: the full squad is committed this quarter, and a committed squad with nothing to build creates pressure to start designing. Rigor has to be fast, not just correct.
+Query 1 could still show the 9-point loss sits with users who never established a streak at all, in which case **none of the three approved features addresses it.** My job now is making sure that query actually runs, and that the gate holds if the answer is inconvenient. An approved direction creates pressure to treat a gate as a formality.
 
-## The Open Decision
+Still true: every number in the design is an assumption, and the full squad is committed this quarter.
 
-**Thursday must resolve:** does the problem statement hold, and is the problem the reset mechanic, the notification, or both? Owners and dates needed for the causality check and the validation of Raj's number.
+## The Decision — resolved
 
-**Not yet decided, and not mine:** whether the Comeback screen gets built. That's Marcus's call, informed by Thursday.
+**Thursday resolved it.** Marcus approved the recommendation as written: **Option C as the direction** — Comeback Screen + Freeze + Weekly Streak — with **validation funded and the release gated on Query 1**, not assumed by it. Recorded 2026-09-16.
+
+**Still open, and all four were needed at that meeting:**
+
+- **Owner and date for Query 1** — the gate the release now depends on.
+- **Owners for the two fast tracks.**
+- **A recovery target.** Still no number and no timeframe.
+- **Whether to instrument for attribution**, given all three features ship together.
+
+None of these is captured anywhere. Treat them as gaps, never as settled.
 
 ## Standing Constraints and Context
 
@@ -61,12 +72,16 @@ This has a clock on it: the full squad is committed this quarter, and a committe
 | `01-orient/project.md` | What Streakly is, goal, bet, not-doing, current phase, squad and stakeholders. |
 | `01-orient/strategy.md` | The retention hypothesis, confidence tiers, what must be true, parked interventions. |
 | `01-orient/change_log.md` | Running decision log, newest first, plus unassigned items pending owners. |
-| `01-orient/problem-brief.md` | Thursday's pre-read. Problem statement + evidence + questions the meeting must answer. |
+| `01-orient/problem-brief.md` | **Historical as of 2026-09-16.** Was Thursday's pre-read. Body kept unedited; the banner records that none of its four questions came back answered. Useful as the record of what was asked before the decision, not as current state. |
 | `01-orient/validation-plan.md` | How we validate the *problem* (the replay validates the solution). Splits the problem statement into four claims, specifies three data queries plus an interview plan, pre-registers kill conditions, and sets an achievable bar. Query 1 — decomposing the 9-point decline — was not captured anywhere before this. Proposed, unassigned. |
 | `01-orient/orientation.md` | Course module map. Points to the files above; holds the parked PRD skeleton. |
 | `02-research/interview-synthesis.md` | Three-stage user interviews (retained / churned / week-1). Five themes, tensions, and the week-1 insight that harm may precede any reset. n=3, directional. |
 | `02-research/nps-analysis.md` | 10 NPS verbatims coded by theme and ranked. Findings report written to share with Marcus. Verbatims only — no scores, so no NPS figure can be derived. |
 | `02-research/competitive-matrix.md` | Primary-source scan of Duolingo, Babbel, Elevate, Brilliant, Finch, plus Lumosity as the do-nothing control. Two white-space gaps. Section 6 is a "do not quote" list of unverified figures — read it before using any number. |
+| `docs/pm-brief.md` | PM brief for the Comeback screen prototype, with the approval context and the persona's actual state under the approved design. |
+| `docs/hypothesis.md` | **Revision 2.** Learning synthesis — what we know / assume / don't know — plus the hypothesis, now split into arms because the pre-emptive prompt is actively predicted to backfire. Carries assumption 0: that the streak motivates users intrinsically, never examined and sitting beneath the whole design. |
+| `docs/triad-session.md` | 30-minute triad working-session agenda (Trevor / Raj / Lena) and the post-session alignment template. The Lena 1:1 is a stated prerequisite, not an agenda item. |
+| `prototype/index.html` + `README.md` | Clickable Comeback-surface prototype: lock-screen entry, three trigger states, and a "How streaks work" explainer. README carries the interview decisions and the persona findings. No user has seen it. |
 | `02-research/decision-brief.md` | Pre-read for Marcus, **revision 5** — deliberately ordered problem-first, solutions-second, recommendation-last, because that is what he asked for. Part 1 is findings + evidence status + the one query that could invalidate everything; Part 2 is the three features, a coverage matrix and options A/B/C. Recommends **C as the direction with the release gated on Query 1**, and names exactly what proceeds vs holds meanwhile. Notes that Reddit was unobtainable and the user-voice layer is Hacker News / Clozemaster, not Reddit. |
 | `05-decide/counterfactual-replay.md` | Handoff-ready analysis spec for Raj. Replays **both** layers of Candidate 3 — daily streak + freeze bank, and weekly goal + miss bank — against historical activity. Six queries, pre-registered kill conditions, and a priority order if time is short. Gates the candidate. Proposed, unassigned. |
 | `05-decide/experiment-26of30.md` | **Superseded 2026-09-14** — specifies a 2×2 factorial with a freeze arm that no longer exists, against a quota since redesigned. The staged ladder (counterfactual replay → concept test → painted door → A/B), guardrails and falsification conditions are still sound; the arms are not. Needs rewriting as a two-arm test of Candidate 3. |

@@ -1,5 +1,24 @@
 # Problem Brief — Day-7 Retention Decline
 
+> ## Historical — superseded 2026-09-16
+>
+> This was the pre-read for Thursday's problem-alignment meeting. **Kept unedited below as the record of what was asked.**
+>
+> Thursday happened and **Marcus approved Option C** — Comeback Screen + Freeze + Weekly Streak — with the release gated on Query 1. For current state see `project.md` (phase), `strategy.md` (design and live risks), and `../02-research/decision-brief.md` (what was approved, and on what evidence).
+>
+> **None of the four questions below came back answered:**
+>
+> | Question | Status, 2026-09-16 |
+> |---|---|
+> | 1. Did the redesign cause this? | **Open.** Later demoted to *"attempted, abandoned if unanswerable"* — deliberately, since a randomised forward test doesn't require the answer |
+> | 2. Does Raj's churn finding survive scrutiny? | **Open.** Still unreviewed, still unassigned |
+> | 3. Reset, notification, or both? | **Never answered explicitly, but acted on** — notifications split off as Fast track 1, and the approved features address the reset-and-recovery half. A de facto position without a stated one |
+> | 4. What are we targeting? | **Open.** No recovery number, no timeframe |
+>
+> The closing line — *"Design starts after that, not before"* — did not hold. The design was completed and approved with all four questions outstanding. The **Query 1 gate** is the safeguard that replaced this document's intent, and `validation-plan.md` is its successor.
+>
+> Two details in the body are also out of date: the Comeback screen is no longer parked, and its *"one-tap streak freeze"* component no longer exists — freezes are earned-only and auto-applied.
+
 **Pre-read for Thursday.** Purpose of the meeting: agree on what is actually broken. We are not selecting a solution.
 
 ---
