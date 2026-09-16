@@ -40,8 +40,8 @@ Still true: every number in the design is an assumption, and the full squad is c
 
 - **Owner and date for Query 1** — the gate the release now depends on.
 - **Owners for the two fast tracks.**
-- **A recovery target.** Still no number and no timeframe.
-- **Whether to instrument for attribution**, given all three features ship together.
+- ~~A recovery target.~~ **Answered 2026-09-16** — see Standing Constraints above.
+- ~~Whether to instrument for attribution.~~ **Answered 2026-09-16** — two independent 50/50 splits: **new signups** to measure the target, **existing users** as a safety guardrail. Rolling launch over 7 days to 50% of the existing base. A kill switch for the tolerance layer is in scope.
 
 None of these is captured anywhere. Treat them as gaps, never as settled.
 
@@ -54,7 +54,7 @@ None of these is captured anywhere. Treat them as gaps, never as settled.
   - *Documented, qualitative:* streak reset reads as punishment (Lena's research).
   - *Directional only, unvalidated:* two consecutive misses → ~2x churn (Raj, one evening of analysis). Most persuasive number we have and the least tested. Do not let it carry a frame.
   - *Not established:* that v2 caused the decline. Correlation in time only; confounds unexamined.
-- **No target set** for recovery — neither a number nor a timeframe. Treat as an open question, never as assumed.
+- **Recovery target — set 2026-09-16, after being open for the whole project: Day-7 retention above 50% within 4 weeks of launch.** Note this is *above* the 48% pre-decline baseline, not a return to it — reversing the decline would land at 48%. The spec should carry the one number, since "reverse the decline" and ">50%" deliver opposite verdicts on a 47% result.
 
 ## How I Want Claude to Work With Me
 

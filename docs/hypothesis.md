@@ -90,13 +90,17 @@ That is the same attribution discipline applied earlier in this project, and it 
 
 **Stated dependency:** its reach is capped by whether users open the notification that precedes it, which makes Fast track 1 a plausible prerequisite.
 
-### The blank we still cannot fill
+### The blank is now filled — and these became falsifiable
 
-The outcomes above are stated qualitatively because **no recovery target has ever been set**, in number or timeframe. That is an open question, not an oversight, and I am not going to invent one.
+> **Target, set 2026-09-16: Day-7 retention above 50%, within 4 weeks of launch.**
 
-But the consequence should be named plainly: **as written, none of these is falsifiable.** "A recovery in early retention" can be claimed on any positive movement, including noise. Without a target we cannot distinguish a win from a rounding error, and we will be free to declare success whatever comes back.
+For the whole project this section read *"no recovery target has ever been set"* and concluded that none of these hypotheses was falsifiable — "a recovery in early retention" could be claimed on any positive movement including noise. **That is no longer true.** Substitute the number into the statements above and each becomes a clean pass or fail.
 
-**The missing target is the difference between a hypothesis and a hope.** Set it before the experiment is designed, not after results arrive.
+**Three things follow that are worth stating precisely:**
+
+1. **The bar is above the old baseline, not a return to it.** The decline was 48% → 39%. Reversing it lands at 48%; >50% is two points past the best Streakly has ever performed. **A result of 47% reverses the decline and misses the target.** The spec must carry one number, because "reverse the decline" and ">50%" render opposite verdicts on the same outcome.
+2. **It is only measurable via a new-signup split.** Day-7 retention is a new-user metric. The agreed 50/50 split on *existing* users is a safety guardrail, not a measurement of this goal — existing users have no day 7. **Without a split on new registrations there is no way to substantiate the number**, and that split is not yet confirmed.
+3. **The read cannot be trusted before week three.** Rollout completes day 7; cohorts registering days 7–21 produce readable Day-7 figures inside the 28-day window. Roughly 14 days of clean cohorts. Power is fine; anyone asking at day 10 is looking at noise.
 
 ### What would falsify this
 
@@ -115,7 +119,7 @@ In priority order. The first two are days of work on data we already hold.
 
 1. **Query 1** — decompose the nine points by week-1 behaviour. Can invalidate everything above. **Unowned, and the release is gated on it.**
 2. **Q5b** — what share of users ever complete 28 consecutive perfect days. One number.
-3. **Set a recovery target.** Without it, §4 is unfalsifiable.
+3. ~~Set a recovery target.~~ **Done 2026-09-16 — >50% Day-7 within 4 weeks.** Replaced by: **confirm the new-signup split**, without which the target cannot be measured.
 4. **8–12 week-1 interviews**, including users who never broke a streak — and **at least some with an external goal**, to test assumption 0. Also fixes the n=1 problem on assumption 4.
 5. **Concept-test the day-1 view in isolation.** The only way to test legibility, still entirely unexamined.
 6. **Build and test the day-1 reassurance state** — *proposed, not built.* Move the user's first contact with the tolerance system from the warning to the reassurance. Requested by Amara across two roleplays and implied by Priya's *"why didn't you tell me?"* — **both personas asking for the same change from opposite ends of the lifecycle**, which is the strongest signal available on something untested.

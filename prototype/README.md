@@ -84,13 +84,34 @@ Just the brief's persona. No state switcher.
 |---|---|---|
 | 0 | **Lock screen** | **Entry point.** A push leading with what survived, or with what today keeps. Added 2026-09-16 — see below |
 
-### Three trigger states
+### Four states
+
+**Added 2026-09-16: `Day 5 · first week`** — the cohort the success metric measures, and the state Lena blocked sign-off on.
+
+A day-5 user has no live daily streak and a best-ever of 2 days, so the design's usual hero — *lead with what survived* — has nothing to lead with. **What is alive is the week itself:** two misses against a budget of four means the weekly goal is still reachable.
+
+> **"Your first week is still on track."** · First week · **2 spare days left**
+> *Two missed days came out of your spare days, so the week still counts. You have two left.*
+> CTA: **Keep the week going**
+
+Two copy decisions worth flagging for review: the best-ever row reads **"Best so far — 2 days"** rather than "your best ever," because a lifetime-record framing on a 2-day number is faintly absurd. And the CTA is *"keep the week going"* rather than *"pick it back up"*, because there is nothing accumulated to pick back up — the live thing is the week.
+
+**Copy in this state is a first draft for Lena to replace.** Per `docs/design-review.md`, the hero framing is hers to own.
+
+### Notes for implementation
+
+- **The home screen's streak values are state-driven** as of 2026-09-16 (`dailyBefore` / `dailyAfter` per state). An earlier version hardcoded them to `0`/`1` and contradicted the completion screen in the `save` state. If you are reading this file as a behavioural reference, that is the one place it previously lied.
+- **The screen-reader announcement is per-state** (`doneAnnounce`). It was previously one hardcoded string that asserted "week streak still 2 weeks" even in states where the week streak was zero.
+- **Entry is via notification only.** There is no in-app entry point. A user with push disabled cannot reach this surface — that is an open spec question, not a prototype omission.
+
+### Trigger states
 
 The surface fires on two different triggers, shown as three states in the harness:
 
 | State | Trigger | What it shows |
 |---|---|---|
-| **Day 14 · at risk** | **Pre-emptive** — last day a streak can still be saved | Daily streak **12, alive**. Freeze already spent on yesterday. *"Today keeps your 12-day streak."* |
+| **Day 5 · first week** | Post-break, week 1 | No daily streak, best of 2 days — **the week itself is the live asset** |
+| **Day 14 · at risk** | **Pre-emptive** — last day a streak can still be saved | Daily streak **12, alive**. Freeze already spent on yesterday |
 | **Day 15 · lost it** | Post-break | Daily streak gone, **week streak alive at 2** |
 | **14-month · 8 days** | Post-break, long tenure | Both streaks gone. Falls back to a memento |
 

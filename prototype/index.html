@@ -530,8 +530,8 @@
 <div class="harness">
   <p class="harness-note">
     <strong>Prototype</strong> — Streakly Comeback screen. Starts at the notification, because that is the real entry point.
-    Three trigger states: the last day a streak can still be saved, the day after it's lost, and the long-tenure case
-    where both streaks are gone. Lesson content is placeholder.
+    Four states across the lifecycle. Lesson content is placeholder.
+    <strong>Entry is via notification only</strong> — an in-app entry point for users with push disabled is unspecified.
   </p>
 
   <div class="tabs" role="tablist" aria-label="Prototype sections">
@@ -540,7 +540,8 @@
   </div>
 
   <div class="states">
-    <button class="state-btn" id="state-save" aria-pressed="true">Day 14 · at risk</button>
+    <button class="state-btn" id="state-week1" aria-pressed="true">Day 5 · first week</button>
+    <button class="state-btn" id="state-save" aria-pressed="false">Day 14 · at risk</button>
     <button class="state-btn" id="state-short" aria-pressed="false">Day 15 · lost it</button>
     <button class="state-btn" id="state-long" aria-pressed="false">14-month · 8 days</button>
   </div>
@@ -764,6 +765,36 @@
   ];
 
   const states = {
+    week1: {
+      eyebrow: 'Four days in.',
+      headline: 'Your first week is still on track.',
+      pushTitle: 'Your first week is still on track',
+      pushBody: 'Two missed days came out of your spare days. Sixty seconds keeps the week going.',
+      alive: true,
+      cardLabel: 'First week',
+      cardNum: '2',
+      cardUnit: 'spare days left',
+      cardDetail: 'Two missed days came out of your spare days, so the week still counts. <strong>You have two left.</strong>',
+      rows: [
+        ['Wednesday — covered by your freeze', 'Saved', 'alive'],
+        ['Thursday — no freeze left', 'Streak ended', 'ended'],
+        ['Daily streak', '0 days', 'ended'],
+        ['Best so far', '2 days', '']
+      ],
+      cta: 'Keep the week going', ctaSub: 'One 60-second lesson',
+      doneEyebrow: 'Done — 44 seconds.',
+      doneHeadline: 'Week’s still on.',
+      t1num: '1', t1label: 'Daily streak<br>Counts from today',
+      t2num: '2', t2label: 'Spare days<br>Left this week',
+      doneNote: 'Three days done out of your first seven, with two spare days still in hand.',
+      doneAnnounce: 'Counted as today’s lesson. Daily streak restarted at 1 day. First week still on track, two spare days left.',
+      best: '2 days',
+      pill: 'First week',
+      spare: '2',
+      dailyBefore: '0', dailyAfter: '1', homeToneBefore: 'ended',
+      homeLabelBefore: 'Daily streak<br>Best so far: 2 days',
+      homeLabelAfter: 'Daily streak<br>Counts from today'
+    },
     save: {
       eyebrow: 'Yesterday was covered by your freeze.',
       headline: 'Today keeps your 12-day streak.',
@@ -786,9 +817,13 @@
       t1num: '13', t1label: 'Daily streak<br>Still going',
       t2num: '2', t2label: 'Week streak<br>Unbroken',
       doneNote: 'Thirteen days. Your freeze is used up — you’ll earn another after four clean weeks.',
+      doneAnnounce: 'Counted as today’s lesson. Daily streak now 13 days. Week streak still 2 weeks.',
       best: '12 days',
       pill: '2-week streak',
-      spare: '3'
+      spare: '3',
+      dailyBefore: '12', dailyAfter: '13', homeToneBefore: 'alive',
+      homeLabelBefore: 'Daily streak<br>Today keeps it',
+      homeLabelAfter: 'Daily streak<br>Counts from today'
     },
     short: {
       eyebrow: 'You’ve been away two days.',
@@ -812,9 +847,13 @@
       t1num: '1', t1label: 'Daily streak<br>Counts from today',
       t2num: '2', t2label: 'Week streak<br>Unbroken',
       doneNote: 'Your 12-day best stays on your profile. Tomorrow makes the daily streak 2.',
+      doneAnnounce: 'Counted as today’s lesson. Daily streak restarted at 1 day. Week streak still 2 weeks.',
       best: '12 days',
       pill: '2-week streak',
-      spare: '2'
+      spare: '2',
+      dailyBefore: '0', dailyAfter: '1', homeToneBefore: 'ended',
+      homeLabelBefore: 'Daily streak<br>Best: 12 days',
+      homeLabelAfter: 'Daily streak<br>Counts from today'
     },
     long: {
       eyebrow: 'You’ve been away eight days.',
@@ -838,15 +877,20 @@
       t1num: '1', t1label: 'Daily streak<br>Counts from today',
       t2num: '0', t2label: 'Week streak<br>Starts next week',
       doneNote: 'Your 428-day best stays on your profile. Tomorrow makes the daily streak 2.',
+      doneAnnounce: 'Counted as today’s lesson. Daily streak restarted at 1 day. Week streak is 0 and starts again next week.',
       best: '428 days',
       pill: 'No week streak',
-      spare: '0'
+      spare: '0',
+      dailyBefore: '0', dailyAfter: '1', homeToneBefore: 'ended',
+      homeLabelBefore: 'Daily streak<br>Best: 428 days',
+      homeLabelAfter: 'Daily streak<br>Counts from today'
     }
   };
 
-  let current = 'save';
+  let current = 'week1';
   let step = 0;
   let lessonDone = false;
+  let lessonFrom = 'comeback';
 
   function renderState() {
     const s = states[current];
@@ -879,26 +923,28 @@
     document.getElementById('done-t2-num').className = 'tile-num ' + (s.t2num === '0' ? 'ended' : 'alive');
     document.getElementById('done-note').textContent = s.doneNote;
 
-    ['save', 'short', 'long'].forEach(k =>
+    ['week1', 'save', 'short', 'long'].forEach(k =>
       document.getElementById('state-' + k).setAttribute('aria-pressed', String(current === k)));
 
     renderHome();
   }
 
   function renderHome() {
+    const s = states[current];
     const num = document.getElementById('home-streak-num');
-    num.textContent = lessonDone ? '1' : '0';
-    num.className = 'tile-num ' + (lessonDone ? 'alive' : 'ended');
+
+    num.textContent = lessonDone ? s.dailyAfter : s.dailyBefore;
+    num.className = 'tile-num ' + (lessonDone ? 'alive' : s.homeToneBefore);
 
     document.getElementById('home-streak-label').innerHTML = lessonDone
-      ? 'Daily streak<br>Counts from today'
-      : 'Daily streak<br>Best: ' + states[current].best;
+      ? s.homeLabelAfter
+      : s.homeLabelBefore;
 
-    document.getElementById('home-pill').textContent = states[current].pill;
+    document.getElementById('home-pill').textContent = s.pill;
 
     const spare = document.getElementById('home-spare-num');
-    spare.textContent = states[current].spare;
-    spare.className = 'tile-num ' + (states[current].spare === '0' ? 'ended' : 'alive');
+    spare.textContent = s.spare;
+    spare.className = 'tile-num ' + (s.spare === '0' ? 'ended' : 'alive');
 
     document.getElementById('home-lesson-tag').textContent = lessonDone
       ? 'Today’s lesson — done'
@@ -920,6 +966,7 @@
 
   document.getElementById('start-lesson').addEventListener('click', () => {
     step = 0;
+    lessonFrom = 'comeback';
     renderLesson();
     show('lesson');
   });
@@ -931,8 +978,7 @@
     } else {
       lessonDone = true;
       show('done');
-      document.getElementById('done-announce').textContent =
-        'Counted as today’s lesson. Daily streak restarted at 1 day. Week streak still 2 weeks.';
+      document.getElementById('done-announce').textContent = states[current].doneAnnounce;
     }
   });
 
@@ -941,7 +987,7 @@
       step -= 1;
       renderLesson();
     } else {
-      show('comeback');
+      show(lessonFrom);
     }
   });
 
@@ -957,6 +1003,7 @@
 
   document.getElementById('home-start').addEventListener('click', () => {
     step = 0;
+    lessonFrom = 'home';
     renderLesson();
     show('lesson');
   });
@@ -981,7 +1028,7 @@
     show('push');
   }
 
-  ['save', 'short', 'long'].forEach(k =>
+  ['week1', 'save', 'short', 'long'].forEach(k =>
     document.getElementById('state-' + k).addEventListener('click', () => setState(k)));
 
   renderState();

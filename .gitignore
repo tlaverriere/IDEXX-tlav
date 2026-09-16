@@ -1,2 +1,7 @@
 .DS_Store
 .claude/settings.local.json
+
+# Stakeholder working notes — kept local by choice.
+# They profile how named colleagues review work, which is reasonable to
+# think about privately and not something to publish under a real identity.
+stakeholders/
