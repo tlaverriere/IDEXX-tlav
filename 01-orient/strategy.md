@@ -32,11 +32,11 @@ Lena's research supports steps 3–5 as lived experience: users describe the res
 | Day-7 is 39% against a 48% baseline | **Verified** | Retention dashboard |
 | Users experience the streak reset as punitive, with no re-entry path | **Documented, qualitative** | Lena's research write-up |
 | Absence of a recovery path drives disengagement | **Documented, corroborated** | Top theme in 10 NPS verbatims (4 mentions) plus the interview set. Two independent sources. Upgraded 2026-09-14 from single-source. |
-| Churn also occurs with no streak break (drift path) | **Directional** | 2 NPS respondents + 1 day-4 interview. Two independent sources, very small n. |
+| Churn also occurs with no streak break (drift path) | **Directional, and strengthened 2026-09-17** | 2 NPS respondents + 1 day-4 interview. Two independent sources, very small n. **Third source added, different in kind:** decomposing a 10-point cohort decline in the sample data attributes 1.7 points to more users breaking and 8.3 to retention falling within both groups — with the fall concentrated in users who never broke. Synthetic data, so this raises confidence without changing the tier. See `data/metric-findings.md` Q2. |
 | Week-1 harm begins before any reset | **Directional, single-source** | One day-4 interview. The most consequential and least tested claim we hold. Must not carry a frame. |
 | Five of five direct competitors ship a missed-day forgiveness mechanic; we do not | **Verified** | Primary-source competitive scan, 2026-09-14. Our current design matches only Lumosity — included in the scan as the do-nothing control case. |
 | Neither candidate's market position is currently occupied | **Documented, with a research caveat** | Competitive scan. Caveat: no company documents its post-miss screen, so "unowned" is partly "not observable by desk research." Needs first-hand capture to firm up. |
-| Two consecutive missed days → ~2x churn | **Directional only** | Raj, one evening of analysis. Unreviewed. Our most persuasive number and our least tested. |
+| Two consecutive missed days → ~2x churn | **Directional only, and the magnitude is now questioned** | Raj, one evening of analysis. Unreviewed. Our most persuasive number and our least tested. **2026-09-17:** the sample data agrees on direction — week-1 breakers retain 15 pp worse at Day-7 (23.4% vs 38.4%, *p* = 0.0022), holding in all five cohort weeks — but puts the churn relative risk at **1.24–1.34, not 2x**. Different dataset and synthetic, so it does not overturn Raj's figure; it does mean "~2x" should stop travelling unqualified. |
 | The v2 redesign caused the decline | **Not established** | Correlation in time only. Confounds unexamined. |
 | Easy forgiveness devalues the streak and weakens its motivating power | **Directional, external voice** | Hacker News / Clozemaster, 2026-09-14. Long-streak holders on a mature product — a vocal, self-selected group at the opposite end of the lifecycle from our problem. See the cross-cutting risk section below. |
 | Any of the above holds *for week-1 users specifically* | **Known gap** | Interviews and NPS are both stage-mixed and unlabeled. Our core metric is Day-7; no current evidence is segmented to it. |
@@ -51,7 +51,11 @@ The hypothesis still rests on the two weakest rows — Raj's figure and v2 causa
 
 **3. The post-break experience matters more than notification timing.** Raj's instinct is "both, with post-break mattering more." Unresolved. These imply different owners and very different cost profiles — a notification tone-and-timing fix is far cheaper than a new surface.
 
-**4. The problem is break-shaped.** *Added 2026-09-14.* The hypothesis and the Comeback concept both trigger on a break. Two sources now suggest a share of churn is drift, not reset — users who never break anything and simply fade. If that share is material in week 1, a break-triggered fix addresses only part of the loss and the problem statement needs widening before we scope a solution.
+**4. The problem is break-shaped.** *Added 2026-09-14. Weakened 2026-09-17 — this is now the condition most likely to fail.* The hypothesis and the Comeback concept both trigger on a break. Two sources suggest a share of churn is drift, not reset — users who never break anything and simply fade. If that share is material in week 1, a break-triggered fix addresses only part of the loss and the problem statement needs widening before we scope a solution.
+
+**A third source now points the same way, and it sizes the share.** Decomposing a 10-point Day-7 decline across cohorts in the sample data: **1.7 points from more users breaking, 8.3 points from retention falling within both groups** — with breakers flat (23.1% → 22.9%) and non-breakers falling (41.9% → 29.2%). On that shape, most of the decline is not break-shaped at all.
+
+The data is synthetic and does not reproduce Streakly's real figures, so this is not evidence the condition fails. It is the clearest statement yet of *how* it would fail, and it is the exact decomposition Query 1 was specified to produce on real data. Worth putting to Marcus before the query lands — an approved direction plus an inconvenient answer is harder to absorb than an inconvenient answer that was flagged as possible in advance.
 
 ## Approved interventions
 

@@ -39,15 +39,19 @@ Day-7 retention sits at 39% against a 48% baseline, and the loss concentrates in
 The design is finished. **The problem statement is not validated.** Both are true and should be held at once.
 
 - Interviews are n=3. NPS is 10 verbatims with no scores attached. **Neither is segmented to week 1**, which is our core metric.
-- Raj's *"two consecutive misses → ~2x churn"* — our most persuasive number — remains one unreviewed evening of analysis.
+- Raj's *"two consecutive misses → ~2x churn"* — our most persuasive number — remains one unreviewed evening of analysis. **Sample-data analysis on 2026-09-17 agrees on direction and puts the relative risk at 1.24–1.34, not 2x.** Treat the direction as supported and the magnitude as unsettled.
 - That **v2 caused the decline is not established.** Correlation in time only; confounds unexamined.
 - **No recovery target has been set**, in either number or timeframe. Still an open question, not an assumption.
+
+**If you have seen a "+30 pp Day-7 lift" quoted anywhere, it does not hold.** A week-5 pilot in the sample data shows Comeback 76% vs control 46% (*p* = 0.0021), and it fails four checks: the measurement window closes **four days after the last date in the dataset**; the effect is larger and only significant in users who **cannot see the screen**; eight control users were exposed to it; and the study's minimum detectable effect was +27.9 pp, so it could only ever find an implausibly large result. The open-rate finding from the same pilot *is* solid — people open the surface and act on it, where the old notification produced **zero** actions across 141 sends. **That supports the surface, not the retention case.** Full working in `../data/metric-findings.md`.
 
 ## The one question that could invalidate all of this
 
 **Query 1** decomposes the 9-point decline by week-1 behaviour: users who broke a streak, users who didn't, and users who **never established one**.
 
 If the loss sits with that third group, this is an **onboarding problem** and none of the three features below addresses it.
+
+**Added 2026-09-17 — the sample data shows what that failure would look like.** Decomposing a 10-point Day-7 decline there: **1.7 points came from more users breaking streaks, 8.3 from retention falling among users who kept theirs intact.** The data is synthetic and does not reproduce our real numbers, so this is not a result. It is a shape — and on that shape most of the decline is not break-shaped, which is the drift path we have logged twice before and never sized. Flagging it now rather than after the query, because an inconvenient answer is easier to absorb when it was named as possible in advance.
 
 It runs on existing data, takes days, needs no new sources — and **has no owner.** Full spec in `../01-orient/validation-plan.md`.
 
