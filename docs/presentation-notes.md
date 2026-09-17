@@ -118,7 +118,7 @@ either of us.
 
 ---
 
-## If he pushes — the three most likely and where the answers live
+## If he pushes — the four most likely and where the answers live
 
 - **"Fifty users? What can I say about this at board?"** → Say the return visit, say
   nothing about Day-7 until the re-run. It is a composition problem, not a
@@ -130,6 +130,17 @@ either of us.
   silent on the expensive half, so the consequence is sequencing rather than
   cancellation — which is this deck's proposal. `objection-log.md` question 2.
 - **"Then why fund the Comeback screen at all, if it isn't measured on Day-7?"** →
-  **This is the one that can cut the feature, and the answer is a number I do not
-  have.** Do not defend the scope. Offer to produce the breakers-through-protection
-  figure from the counterfactual replay and bring it back before the build decision.
+  **Still the one that can cut the feature, but the answer improved on the 17th.** It
+  is bounded at **0–36.2% of new signups**, and the point value arrives Wednesday as
+  Query 1b. Say the bound out loud, including that **the lower end is reachable
+  because our own Freeze is designed to prevent the event this feature responds to.**
+  Do not defend the scope — if it lands at the bottom of the range, his own
+  alternative (*ship B, then size A*) is the right call. `audience-sizing.md`.
+- **"You assigned my gate for me. What else have you decided on my behalf?"** →
+  **New on the 17th, and he is partly right.** Concede the framing was mine to
+  correct: Query 1 and both fast tracks sat inside my squad, so they were
+  prioritisation, not authority — and calling them his is what kept the gate
+  unstaffed for four days. **The CAC input genuinely is his**, which is the one name
+  I am asking for. Do not apologise for the decision or offer to unwind it as a
+  gesture; the offer to reverse is real and already in the ask.
+  `recommendation-memo.md` Part 2 question 3.

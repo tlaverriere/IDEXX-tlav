@@ -121,23 +121,34 @@ should say plainly that the split was implicit and should have been stated.
 stops being a fast track and becomes the main line. I should say that before he
 does.
 
-## 3 · *"I approved a direction gated on a query that still has no owner, and you're now telling me the problem may not be the one we're fixing. What did I actually approve on Thursday?"*
+## 3 · *"You assigned my gate for me. What else have you decided on my behalf?"*
 
-**Why it's hard:** it questions the integrity of the decision rather than the data,
-and part of the answer is that the safeguard he asked for was never staffed. The
-gate is on the record as the reason the approval was sound.
+*Rewritten 2026-09-17. This slot used to read "I approved a direction gated on a
+query that still has no owner" — that question is no longer available to him,
+because the gate is now owned and dated. **The assignment answered one objection and
+created a sharper one.***
 
-**How I'd answer:** directly, and without softening it. He approved a direction and
-a gate, and the gate is the part that has not happened — that is on me to have
-escalated sooner. What he approved is still the right direction on the evidence we
-had; what has changed is that the decomposition now gives a specific shape to how
-it could be wrong, which is more useful than the vague possibility we had on
-Thursday. **The gate did its job by making this checkable.** The fix is one name
-and one date, which is ask #1.
+**Why it's hard:** it is about authority rather than data, and he is partly right.
+The gate was on the record as the reason his approval was sound, and I staffed it
+without asking him.
 
-**What I should not do:** frame the decomposition as reassuring. It is not. It is
-the clearest signal yet that the problem statement may be too narrow, and he should
-hear it as that.
+**How I'd answer:** concede the framing was mine to correct and say what the
+distinction actually is. **Query 1 and both fast tracks sit inside my squad — that
+was capacity and prioritisation, which is mine.** Calling it his call was my error,
+and it is the error that kept the gate unstaffed for four days while the release
+stayed gated on it. **The CAC input is genuinely his**, because finance is outside
+the squad, and that is the one name I am asking for. So the honest answer to *what
+else* is: nothing — three of four were mine and I should have made them sooner, and
+the fourth is the one in front of him.
+
+**What I should not do:** apologise for the decision or offer to unwind it as a
+gesture. **The offer to reverse it is real and it is in ask #1** — if he wants Query
+1 elsewhere there is still time before Wednesday. But treating a correct call as an
+overstep invites the next one to wait four days too.
+
+**And still true regardless of who owns what:** the decomposition is not reassuring.
+It is the clearest signal yet that the problem statement may be too narrow, and he
+should hear it as that.
 
 ---
 

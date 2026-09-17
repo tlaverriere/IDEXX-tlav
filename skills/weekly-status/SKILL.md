@@ -228,8 +228,8 @@ check against `CLAUDE.md` before relying on it. *Last refreshed 2026-09-17.*
   register question, the empty state, all Comeback copy and the 8–12 week-1
   interviews.** The interview timeline is the thing at risk. Ask about it explicitly
   rather than reporting the tracks as simply "assigned."
-- **Still genuinely unassigned, and this is the Blocker now:** a CAC input for
-  Query 1c — finance or growth, not squad.
+- **The one remaining Blocker: a CAC input for
+  Query 1c.** Routed to finance / growth, **but no person is named** — so it is still a Blocker by our own rule, and **Marcus is who can name them** (it is the only open item outside the squad). Request is send-ready at `docs/cac-request.md`.
 - **Do not report the week-5 pilot as a win.** Its +30 pp Day-7 result does not hold
   — 17.6 of the 30 points come from users who never saw the feature, and day-7 was
   never observed in the data. The defensible result is the **return visit**

@@ -149,8 +149,10 @@ not hold that figure. Day-7 is a new-signup metric, so WAU is not the enrolment 
 2. **Confirm >50% Day-7 in 4 weeks still stands** — nothing we now hold substantiates it. If it stands, it is a commitment made on judgement, and that should be on the record
 3. **Agree the +30 pp does not leave this team**, including board material, until a powered re-run
 
-**Still unassigned, and named so it is not mistaken for covered:** the CAC input for
-Query 1c — finance or growth, not squad.
+**The one thing still needing a name:** the CAC input for Query 1c is routed to
+finance, but **no person is named** — and that is the only open item outside the
+squad, so it is the one I actually need you to broker. Request is written and
+send-ready.
 
 **Capacity flag, said out loud rather than left in a file:** both fast tracks went to
 Lena, on top of the register question, the empty state, all Comeback copy and the

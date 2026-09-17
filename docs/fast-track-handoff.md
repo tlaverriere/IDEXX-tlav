@@ -121,4 +121,4 @@ item. Neither removes the load; both reduce it.
 
 | Item | Needs |
 |---|---|
-| **CAC input for Query 1c** | Finance or growth. Not Raj, not Lena |
+| **CAC input for Query 1c** | Finance or growth — **routed 2026-09-17, still needs a name.** Request send-ready at `cac-request.md`; Marcus to broker, since it is outside the squad |

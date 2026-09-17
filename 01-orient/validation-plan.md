@@ -87,7 +87,7 @@ Both periods, share of segment and Day-7 retention within each bucket.
 | Part | Input | Source |
 |---|---|---|
 | **Volume** | Users lost per week to the 9-point decline: new signups/week × 9pp, and the same figure by segment from Query 1 | **This query.** Same cohort, same window |
-| **Unit cost** | Blended CAC, or CAC by acquisition channel | **Not in product data — needs finance or growth.** **Owner still needed** — not Raj.|
+| **Unit cost** | Blended CAC, or CAC by acquisition channel | **Not in product data — needs finance or growth.** **Routed to finance / growth 2026-09-17 — no person named.** Request at `../docs/cac-request.md`. **Asks for paid CAC, not blended**, since a lost user is replaced at the margin and blended would understate the cost.|
 
 **Report as:** weekly and annualised replacement cost of the decline, stated by channel if channel CAC is available, with the CAC source and date labelled.
 

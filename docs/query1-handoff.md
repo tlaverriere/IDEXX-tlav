@@ -105,6 +105,6 @@ chance to say so before Wednesday.
 
 | Item | Needs |
 |---|---|
-| **CAC input for Query 1c** | Finance or growth. Not Raj's |
+| **CAC input for Query 1c** | Finance or growth — **routed 2026-09-17, still needs a name.** Request send-ready at `cac-request.md`; Marcus to broker, since it is outside the squad |
 | ~~Owners for both fast tracks~~ | **Assigned to Lena later the same day** — see `fast-track-handoff.md` |
 | **8–12 week-1 interviews** | Lena. The only item measured in weeks, and the one that closes her evidence gap |

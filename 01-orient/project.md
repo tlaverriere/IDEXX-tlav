@@ -45,7 +45,7 @@ Query 1 decomposes the 9-point decline by week-1 behaviour. If the loss sits wit
 
 **Fast tracks assigned 2026-09-17 — both to Lena, with Raj supporting FT1 delivery.** Handoff at `../docs/fast-track-handoff.md`.
 
-**Still unassigned and needed:** a CAC input for Query 1c — finance or growth, not squad. *(A recovery target and the attribution decision were both answered 2026-09-16.)*
+**CAC input for Query 1c — routed to finance / growth 2026-09-17; no person named yet.** Request send-ready at `../docs/cac-request.md`. **This is the only item left needing an owner, and the only one outside the squad** — Marcus to broker. *(A recovery target and the attribution decision were both answered 2026-09-16.)*
 
 ## Squad and stakeholders
 
