@@ -216,9 +216,14 @@ check against `CLAUDE.md` before relying on it. *Last refreshed 2026-09-17.*
   Query 1 lands. An update implying accounting work has started misrepresents the phase.
 - **The Comeback screen is no longer parked.** Approved, and a clickable prototype
   exists. **No user has seen it.**
-- **Standing blocker while it remains true: Query 1 has no owner and the release is
-  gated on it.** It belongs in Blockers every week until someone is assigned,
-  because the gate is on the record as the reason the approval was sound. Needs Marcus.
+- **Query 1 is assigned — Raj, due Wednesday 2026-09-23.** *(Was a standing blocker
+  for four days; assigned 2026-09-17.)* The release is still gated on it, so it
+  belongs in **In Progress with its date**, not in Blockers — and **it moves back to
+  Blockers if the date slips**, because the gate is on the record as the reason the
+  approval was sound. Handoff at `docs/query1-handoff.md`.
+- **Still genuinely unassigned, and these are the Blockers now:** a CAC input for
+  Query 1c (finance, not Raj), owners for both fast tracks, and the 8–12 week-1
+  interviews.
 - **Do not report the week-5 pilot as a win.** Its +30 pp Day-7 result does not hold
   — 17.6 of the 30 points come from users who never saw the feature, and day-7 was
   never observed in the data. The defensible result is the **return visit**
@@ -316,7 +321,8 @@ confirmed. No user has seen the prototype yet.
   breakdown currently stacks two failures vertically and reads as a receipt.
 
 ## Open, needs a name
-- Query 1 has no owner and the release is gated on it. Needs Marcus.
+- CAC input for Query 1c. Finance or growth, not Raj.
+- Both fast tracks still have no owner.
 ```
 
 What the example does: gives Raj file paths and scope consequences, gives Lena an

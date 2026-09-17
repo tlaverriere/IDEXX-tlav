@@ -1,6 +1,6 @@
 # Validation Plan — The Problem Statement
 
-*Created 2026-09-14. **Status: proposed, unassigned.***
+*Created 2026-09-14. **Status: Query 1 assigned to Raj 2026-09-17, due Wednesday 2026-09-23 — handoff at `../docs/query1-handoff.md`. Queries 2 and 3 and the interview plan remain unassigned.***
 
 **What this is for.** `../05-decide/counterfactual-replay.md` tests whether a *solution* would have worked. This tests whether the *problem* is real and is where we think it is. Different question, different owner-set, and this one comes first.
 
@@ -87,7 +87,7 @@ Both periods, share of segment and Day-7 retention within each bucket.
 | Part | Input | Source |
 |---|---|---|
 | **Volume** | Users lost per week to the 9-point decline: new signups/week × 9pp, and the same figure by segment from Query 1 | **This query.** Same cohort, same window |
-| **Unit cost** | Blended CAC, or CAC by acquisition channel | **Not in product data — needs finance or growth.** Name the owner when the query is assigned |
+| **Unit cost** | Blended CAC, or CAC by acquisition channel | **Not in product data — needs finance or growth.** **Owner still needed** — not Raj.|
 
 **Report as:** weekly and annualised replacement cost of the decline, stated by channel if channel CAC is available, with the CAC source and date labelled.
 

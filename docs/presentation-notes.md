@@ -5,11 +5,11 @@
 **Say this before slide 1 goes up, while it is still on the title:**
 
 > "Before I walk the problem, here is where I land, so you can listen for whether I
-> earn it. We should ship the notification and the Comeback surface now, hold the
-> production streak changes for a properly powered test, and the one thing I need
-> from you this week is an owner for Query 1. I also want to withdraw a number I
-> put in front of you — it doesn't hold up, and I'd rather say that in the room than
-> have you find it."
+> earn it. We should ship the notification and the Comeback surface now and hold the
+> production streak changes for a properly powered test. Query 1 is assigned to Raj
+> for Wednesday — it sat unowned for four days and I stopped waiting, so tell me if
+> you want it elsewhere. And I want to withdraw a number I put in front of you — it
+> doesn't hold up, and I'd rather say that in the room than have you find it."
 
 *That covers his preference for the recommendation first, and clears the deck to run
 problem-first the way he asked. It also front-loads the withdrawal, which is the
@@ -103,17 +103,18 @@ I need that figure from Raj before I commit to the date.
 
 ## Slide 6 · The ask
 
-Three things, all answerable async this week, and the first one is the only one I
-cannot do myself. **I need an owner for Query 1 by Monday the 21st** — it is the gate
-your approval rests on, it runs on data we hold, and it has had nobody on it since
-the 14th. Second, I need you to confirm that above 50% Day-7 within four weeks still
-stands as the target, because nothing we currently hold substantiates it — and if it
-stands, I want it on the record as a commitment made on judgement rather than on
-evidence, so we are not surprised by our own bar later. Third, I would like us to
-agree that the +30 points does not leave this team, board material included, until it
-survives a powered re-run. The gate you asked for on Thursday did its job — it is why
-I can tell you the number is wrong before we built anything on it — and what it needs
-now is a name.
+One thing to reverse if you want to, and two to confirm. **Query 1 is assigned to Raj
+and due Wednesday the 23rd** — it is the gate your approval rests on, it had nobody on
+it for four days, and rather than keep asking I made the call, so if you want it
+somewhere else say so now while there is still time to move it. Second, I need you to
+confirm that above 50% Day-7 within four weeks still stands as the target, because
+nothing we currently hold substantiates it — and if it stands, I want it on the record
+as a commitment made on judgement rather than on evidence, so we are not surprised by
+our own bar later. Third, I would like us to agree that the +30 points does not leave
+this team, board material included, until it survives a powered re-run. The gate you
+asked for on Thursday did its job — it is why I can tell you the number is wrong
+before we built anything on it — and it is now owned and dated rather than waiting on
+either of us.
 
 ---
 

@@ -25,7 +25,7 @@
 | **0–3** | **Frame.** What's decided, what isn't, what we need from each of you by the end. | Prevents the session drifting into re-litigating the direction |
 | **3–10** | **Prototype — three states only.** See below | The comparison does the explaining |
 | **10–18** | **Lena: the register question.** Is the pre-emptive trigger support or pressure? | The live contested question, and a design judgment only she can make |
-| **18–25** | **Raj: Query 1 ownership plus two feasibility questions.** | The release is gated on Query 1 and it has no owner |
+| **18–25** | **Raj: two feasibility questions plus a Query 1 status check.** *(Amended 2026-09-17 — ownership is settled, so this slot got shorter.)* | The two unlocks have gone unasked for four days and one of them changes cost by an order of magnitude |
 | **25–30** | **Read back owners and dates.** Out loud, by name. | The difference between a working session and a conversation |
 
 ---
@@ -56,11 +56,15 @@
 
 ### For Raj — ownership and two cheap unlocks
 
-1. **"Will you own Query 1, and by when?"** ← *the one that cannot slip*
-   Spec is written and handoff-ready: `../05-decide/counterfactual-replay.md` and `../01-orient/validation-plan.md`. Days of work on existing data. **The release is gated on it and it has no owner**, so the gate currently has nothing behind it.
-2. **"Was v2 A/B tested before launch, or rolled out in stages?"**
-   Thirty-second question with a large payoff. If either is true, a causal answer already exists in the data and the causality question stops being hard. Nobody has asked.
-3. **"Are signup-anchored weeks computable over history, or is that expensive?"**
+> **Amended 2026-09-17 — Query 1 ownership is no longer an agenda item.** It was assigned to Raj directly, due **Wednesday 2026-09-23**, after sitting unowned for four days; handoff at `query1-handoff.md`. **Do not re-open it in the room.** Ask only whether Wednesday still holds, and move the freed time to the two unlocks below, which have gone unasked for four days.
+
+1. **"Does Wednesday still hold for Query 1?"** ← *status check, 30 seconds, not a negotiation*
+   If it does not, that is worth knowing before Thursday's review, because the deck currently reports the answer as arriving in the room.
+2. **"Was v2 A/B tested before launch, or rolled out in stages?"** ← *now the most valuable question in this slot*
+   Thirty-second question with a large payoff. If either is true, a causal answer already exists in the data and the causality question stops being hard. **Still nobody has asked.**
+3. **"Do we have a scheduled evaluator, or does streak state only update when a user appears?"**
+   Decides whether any pre-break surface is a screen or a platform project — an order-of-magnitude cost difference. The pre-emptive trigger was cut partly on a roleplay's claim that no scheduler exists; this is the question that confirms or refutes it.
+4. **"Are signup-anchored weeks computable over history, or is that expensive?"**
    Flagged in the replay spec. If it's costly it changes the *design*, not just the analysis.
 
 ---
@@ -69,14 +73,14 @@
 
 ### Must — do not let this one slip
 
-- **Query 1 has a named owner and a date.** Everything downstream waits on it, including the release.
+- ~~Query 1 has a named owner and a date.~~ **Settled 2026-09-17 — Raj, Wednesday 2026-09-23.** Replaced by: **an answer to the scheduler question and to whether v2 was A/B tested.** Both are recall rather than work, both have been open four days, and one of them decides whether a pre-break surface is a screen or a platform project.
 
 ### Should
 
 - **A verdict on the pre-emptive trigger's register:** ship as drafted, revise the register, or hold it for testing as a separate arm.
 - **Go / no-go on the day-1 reassurance state** — currently proposed, not built. Two personas have asked for it from opposite ends of the lifecycle, which is the strongest signal we have on anything untested.
 
-**If time runs out**, take Query 1 and schedule the other two. The reverse is the wrong trade.
+**If time runs out**, take the two Raj unlocks and schedule the register question. *(Amended 2026-09-17: Query 1 ownership used to be the must-take item and is now settled, so the priority moved to the questions that are still open.)*
 
 ---
 
@@ -103,7 +107,10 @@
 
 | What | Owner | By when |
 |---|---|---|
-| **Query 1** | | |
+| **Query 1** *(pre-filled — confirm, don't re-decide)* | **Raj** | **Wed 2026-09-23** |
+| **CAC input for Query 1c** | *finance / growth — unassigned* | |
+| **Fast track 1** — notification quality | | |
+| **Fast track 2** — week-1 acknowledgment | | |
 | | | |
 
 ## Disagreements recorded

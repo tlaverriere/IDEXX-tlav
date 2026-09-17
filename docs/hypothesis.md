@@ -47,7 +47,7 @@ Directional or unvalidated, and **acted upon anyway**. Each is load-bearing for 
 
 | # | Open question | Why it matters |
 |---|---|---|
-| 1 | **Where the nine points actually sit.** | **Query 1.** If the loss is users who never established a streak, this is an onboarding problem and **none of the approved features addresses it.** Days of work on existing data. **No owner.** |
+| 1 | **Where the nine points actually sit.** | **Query 1.** If the loss is users who never established a streak, this is an onboarding problem and **none of the approved features addresses it.** Days of work on existing data. **Assigned to Raj 2026-09-17, due Wednesday 2026-09-23.** |
 | 2 | Whether v2 caused the decline. | Not established. Deliberately demoted — a randomised forward test doesn't need the answer |
 | 3 | **Whether the design is legible.** Six concepts, seven with the pre-emptive prompt. | Top recorded design risk from the beginning. **Never concept-tested.** The freeze alone took seven bullets to explain in plain language |
 | 4 | **Whether the pre-emptive prompt is net positive or net negative.** | Built to serve Amara; she rejects it. **See §4 — this is why it now needs its own experimental arm rather than inclusion in the primary claim** |
@@ -117,7 +117,7 @@ For the whole project this section read *"no recovery target has ever been set"*
 
 In priority order. The first two are days of work on data we already hold.
 
-1. **Query 1** — decompose the nine points by week-1 behaviour. Can invalidate everything above. **Unowned, and the release is gated on it.**
+1. **Query 1** — decompose the nine points by week-1 behaviour. Can invalidate everything above. **Assigned to Raj 2026-09-17, due Wednesday 2026-09-23.**
 2. **Q5b** — what share of users ever complete 28 consecutive perfect days. One number.
 3. ~~Set a recovery target.~~ **Done 2026-09-16 — >50% Day-7 within 4 weeks.** Replaced by: **confirm the new-signup split**, without which the target cannot be measured.
 4. **8–12 week-1 interviews**, including users who never broke a streak — and **at least some with an external goal**, to test assumption 0. Also fixes the n=1 problem on assumption 4.

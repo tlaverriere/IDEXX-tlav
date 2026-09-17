@@ -7,9 +7,11 @@
 >
 > Marcus approved the recommendation as written: **Option C as the direction**, validation funded, and the **release gated on Query 1** rather than assumed by it.
 >
-> **Kept as the document of record**, unedited below this banner. It shows what was approved and on what evidence — including Part 1's *"What we do not know,"* which the approval did not change and does not retire.
+> **Kept as the document of record.** It shows what was approved and on what evidence — including Part 1's *"What we do not know,"* which the approval did not change and does not retire. **Later findings appear as dated annotations rather than silent edits**, so the original argument stays legible: anything marked 2026-09-17 postdates the approval and was not part of it.
 >
 > **Not settled at the meeting, and still needed:** an owner and date for Query 1, owners for both fast tracks, a recovery target, and whether to instrument for attribution.
+>
+> **Status of those four, as of 2026-09-17 — the list above is preserved as the record of the meeting, not as current state.** Query 1 is **assigned to Raj, due Wednesday 2026-09-23** (`../docs/query1-handoff.md`); the recovery target is set at **>50% Day-7 within 4 weeks**; attribution is answered with **two independent 50/50 splits**. **Only the fast-track owners remain open** — plus a new item, a CAC input for Query 1c.
 
 **Sources:** `interview-synthesis.md` (n=3), `nps-analysis.md` (10 verbatims), `competitive-matrix.md` (5 competitors + 1 control), external user forums, and `../01-orient/strategy.md` for the full design. **On the external voice:** Reddit is inaccessible from our research tooling, so that layer is Hacker News and the Clozemaster forum — real users, different platform. Labelled **external voice** throughout, never presented as Reddit.
 
@@ -41,7 +43,7 @@ The design is finished. **The problem statement is not validated.** Both are tru
 - Interviews are n=3. NPS is 10 verbatims with no scores attached. **Neither is segmented to week 1**, which is our core metric.
 - Raj's *"two consecutive misses → ~2x churn"* — our most persuasive number — remains one unreviewed evening of analysis. **Sample-data analysis on 2026-09-17 agrees on direction and puts the relative risk at 1.24–1.34, not 2x.** Treat the direction as supported and the magnitude as unsettled.
 - That **v2 caused the decline is not established.** Correlation in time only; confounds unexamined.
-- **No recovery target has been set**, in either number or timeframe. Still an open question, not an assumption.
+- ~~**No recovery target has been set**, in either number or timeframe.~~ **Set 2026-09-16: Day-7 above 50% within 4 weeks of launch** — above the old baseline, not a return to it.
 
 **If you have seen a "+30 pp Day-7 lift" quoted anywhere, it does not hold.** A week-5 pilot in the sample data shows Comeback 76% vs control 46% (*p* = 0.0021), and it fails four checks: the measurement window closes **four days after the last date in the dataset**; the effect is larger and only significant in users who **cannot see the screen**; eight control users were exposed to it; and the study's minimum detectable effect was +27.9 pp, so it could only ever find an implausibly large result. The open-rate finding from the same pilot *is* solid — people open the surface and act on it, where the old notification produced **zero** actions across 141 sends. **That supports the surface, not the retention case.** Full working in `../data/metric-findings.md`.
 
@@ -53,7 +55,7 @@ If the loss sits with that third group, this is an **onboarding problem** and no
 
 **Added 2026-09-17 — the sample data shows what that failure would look like.** Decomposing a 10-point Day-7 decline there: **1.7 points came from more users breaking streaks, 8.3 from retention falling among users who kept theirs intact.** The data is synthetic and does not reproduce our real numbers, so this is not a result. It is a shape — and on that shape most of the decline is not break-shaped, which is the drift path we have logged twice before and never sized. Flagging it now rather than after the query, because an inconvenient answer is easier to absorb when it was named as possible in advance.
 
-It runs on existing data, takes days, needs no new sources — and **has no owner.** Full spec in `../01-orient/validation-plan.md`.
+It runs on existing data, takes days, needs no new sources — and ~~has no owner~~ **is assigned to Raj as of 2026-09-17, due Wednesday 2026-09-23.** Full spec in `../01-orient/validation-plan.md`; handoff at `../docs/query1-handoff.md`.
 
 ---
 
@@ -128,9 +130,9 @@ Nothing that Query 1 could invalidate gets built in the interim, and the hold is
 ## Decisions needed Thursday
 
 1. **Direction: A, B or C.**
-2. **An owner and date for Query 1.** The one thing I would not ship without — and it is days of work on data we already have.
+2. ~~An owner and date for Query 1.~~ **Settled 2026-09-17 — Raj, due Wednesday 2026-09-23.** *(Was: the one thing I would not ship without, and days of work on data we already have.)*
 3. **Owners for both fast tracks** — notification quality, and an acknowledgment moment inside week 1. Covered by none of these features.
-4. **A recovery target.** None has been set, in number or timeframe. Without one we cannot judge whether any of this worked.
+4. ~~A recovery target.~~ **Set 2026-09-16 — Day-7 above 50% within 4 weeks of launch.**
 5. **If C: whether to instrument for attribution**, accepting the cost, or to accept that we won't know which feature did the work.
 
 **Every number in these features is an assumption** — 1 miss/week, bank cap 3, freeze cap 7, 3 seeds, a 7-day save run, 4 saves a year. None is derived from our data. The replay spec in `../05-decide/counterfactual-replay.md` is written to set them rather than confirm them.

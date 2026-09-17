@@ -75,7 +75,7 @@ When a daily streak breaks, the product does not acknowledge it and offers no ro
 
 ## Open Questions
 
-**Gates the release** — **Query 1**: decomposes the 9-point decline into *broke a streak / didn't break / never established one.* If the loss sits in the third group, none of the approved features addresses it. Days of work on existing data. **Unowned.** Raj raised this shape first: *"What happens if the user has never set a streak?"*
+**Gates the release** — **Query 1**: decomposes the 9-point decline into *broke a streak / didn't break / never established one.* If the loss sits in the third group, none of the approved features addresses it. Days of work on existing data. **Assigned to Raj 2026-09-17, due Wednesday 2026-09-23** — and he raised this shape first: *"What happens if the user has never set a streak?"*
 
 **Raj**
 

@@ -121,7 +121,7 @@ prototype.** 5 usability sessions are being scheduled, 3 confirmed.
 | | Milestone | Status |
 |---|---|---|
 | Now | Notification + Comeback surface | Reversible, no migration. Kill switch in scope |
-| **Gate** | **Query 1** — decomposes the 9 points by week-1 behaviour | Days of work on data we hold. **Unowned** |
+| **Gate** | **Query 1** — decomposes the 9 points by week-1 behaviour | **Raj, due Wed 2026-09-23** — so the answer is in this room, not promised in it |
 | Then | Full test: MDE **5 pp**, 80% power, **1,568 per arm**, breakers pre-registered | ~3 weeks if the eligible pool is 85,000 WAU |
 | Hold | Streak accounting, schema migration, external comms | Until Query 1 lands |
 
@@ -137,14 +137,16 @@ not hold that figure. Day-7 is a new-signup metric, so WAU is not the enrolment 
 
 ## Slide 6 · The ask
 
-**Assertion:** Three decisions, all answerable async this week.
+**Assertion:** One thing to reverse if you want to, and two to confirm.
 
 **On the slide**
-1. **An owner for Query 1, by Monday 2026-09-21.** It is the gate the approval rests on and has had nobody on it since 2026-09-14
+1. **Query 1 is assigned to Raj, due Wednesday 2026-09-23** — if Query 1 has landed by this meeting, this slide reports the finding instead. **It sat unowned for four days, so I made the call rather than wait. Reverse it now if you want it elsewhere**
 2. **Confirm >50% Day-7 in 4 weeks still stands** — nothing we now hold substantiates it. If it stands, it is a commitment made on judgement, and that should be on the record
 3. **Agree the +30 pp does not leave this team**, including board material, until a powered re-run
 
-**Add to the Query 1 brief rather than carrying separately:** the acquisition-spend
-cost of the leak. Same data, same pass.
+**Still unassigned, and named so they are not mistaken for covered:** the CAC input
+for Query 1c (finance, not Raj), owners for both fast tracks, and the 8–12 week-1
+interviews.
 
-**Close on:** *the gate did its job — it made this checkable. What it needs is a name.*
+**Close on:** *the gate did its job — it made this checkable, and it is now owned
+and dated. What it needs from you is nothing, unless you disagree.*

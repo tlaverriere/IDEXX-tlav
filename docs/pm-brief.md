@@ -8,7 +8,7 @@
 
 **The release is gated on Query 1, not assumed by it.** Query 1 decomposes the 9-point Day-7 decline by week-1 behaviour; if the loss sits with users who never established a streak at all, this is an onboarding problem and none of the three approved features addresses it. Design work — including this prototype — is explicitly in the "proceeds" column. Production streak-accounting changes hold.
 
-**Query 1 still has no owner.** The gate currently has nothing behind it.
+**Query 1 was assigned to Raj on 2026-09-17, due Wednesday 2026-09-23.** *(This brief was written 2026-09-16, when the gate had nothing behind it.)*
 
 ## The brief
 

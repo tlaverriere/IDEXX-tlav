@@ -37,7 +37,7 @@
 **The spec is ready for estimates.** What remains is one design question and one validation dependency, neither of which blocks writing tickets.
 
 1. **Block earning is unprotectable and invisible.** Any miss kills the current 4-week block, frozen or not, and no progress meter ships — so a user 27 days into a perfect block loses it without ever knowing. Two individually defensible decisions combining into something harsh. **Design question, not a spec gap.**
-2. **Query 1 is still unowned**, and the release is still gated on it. **Validation, not spec.**
+2. ~~Query 1 is still unowned~~ **— assigned to Raj 2026-09-17, due Wednesday 2026-09-23.** The release is still gated on it. **Validation, not spec.**
 3. **Confirm with Raj directly that no per-user scheduler exists.** The pre-emptive trigger was cut on the strength of a roleplay's architectural claim, not on Raj's own word. If that claim is wrong, the cut was wrong.
 
 ## One thing to note about the target

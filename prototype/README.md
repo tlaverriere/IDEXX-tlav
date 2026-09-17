@@ -8,7 +8,7 @@
 
 ## The PM Brief
 
-**Approval context.** Option C was approved by Marcus on 2026-09-16 — Comeback Screen + Freeze + Weekly Streak, shipped together. **The release is gated on Query 1, not assumed by it.** Design work, including this prototype, is explicitly in the "proceeds" column; production streak-accounting changes hold. Query 1 still has no owner.
+**Approval context.** Option C was approved by Marcus on 2026-09-16 — Comeback Screen + Freeze + Weekly Streak, shipped together. **The release is gated on Query 1, not assumed by it.** Design work, including this prototype, is explicitly in the "proceeds" column; production streak-accounting changes hold. **Query 1 is assigned to Raj as of 2026-09-17, due Wednesday 2026-09-23.**
 
 **User.** A 24-year-old who hit a 12-day streak, missed two days, and has not opened the app since.
 

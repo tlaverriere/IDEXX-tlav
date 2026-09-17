@@ -6,8 +6,8 @@
 >
 > *"Marcus — headline: the surface change is working and the retention number
 > isn't, and they're separable. Recommendation is to keep building and stop
-> quoting the +30 pp. One thing I need from you: an owner for Query 1 by Monday
-> the 21st. Memo is one page."*
+> quoting the +30 pp. I've assigned Query 1 to Raj for Wednesday rather than wait
+> — say now if you'd rather it sat elsewhere. Memo is one page."*
 
 ---
 
@@ -54,10 +54,13 @@ was approved as rather than a formality.
 
 ## Ask
 
-1. **An owner and date for Query 1, named by Monday 2026-09-21.** It is the gate
-   your approval rests on, it runs on data we already hold, and it has had nobody
-   on it since it was specified on 2026-09-14. This is the one item I cannot
-   unblock myself.
+1. **Query 1 is assigned to Raj, due Wednesday 2026-09-23. I need you to object now
+   if you want it elsewhere.** It sat unowned for four days while the release stayed
+   gated on it, so I stopped waiting for the assignment and made it. Raj is the only
+   defensible owner — he produced the finding the gate exists to test and already
+   holds the data cut it needs. **This was previously framed as your call, and I am
+   telling you rather than asking**, which is a change you should have the chance to
+   reverse before Wednesday.
 2. **Confirmation at Thursday's meeting (2026-09-24) that >50% Day-7 in 4 weeks
    still stands** as the target, given that nothing we now hold substantiates it.
    If it stands, it is a commitment made on judgement rather than evidence, and I
@@ -67,10 +70,10 @@ was approved as rather than a formality.
 
 ## Risk if we wait
 
-Every week without Query 1 we spend squad capacity building three features against
-a problem statement that our own decomposition now suggests explains under a fifth
-of the decline — and I still cannot tell you what the leak costs in acquisition
-spend, which is the third time you have asked.
+Until Wednesday we are still spending squad capacity on three features aimed at a
+problem statement our own decomposition suggests explains under a fifth of the
+decline — and I still cannot tell you what the leak costs in acquisition spend,
+which is the third time you have asked and is now Query 1c.
 
 ---
 
@@ -143,7 +146,7 @@ hear it as that.
 Still unquantified, and I should stop presenting the qualitative version as an
 answer. The shape is known — MAU growing 28% YoY masks a 9-point Day-7 decline at
 the top line while quietly raising the acquisition spend needed to hold flat. The
-number is not. **This belongs in ask #1's scope:** whoever owns Query 1 can produce
+number is not. **Raj now owns it as Query 1c**, and he can produce
 the *volume* half — users lost per week to the 9 points — from the same data in the
 same pass. **The unit cost is not ours**: blended or per-channel CAC has to come from
 finance. **Now added to the plan as Query 1c** rather than carrying as a separate
