@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Streakly — Quarterly Review</title>
+<style>
+  :root {
+    --ink: #1f1d1a; --ink-2: #57534d; --ink-3: #8a857d;
+    --page: #f6f4ef; --card: #ffffff; --line: #e2ded6; --line-2: #c9c3b8;
+    --alive: #2f7d5b; --alive-bg: #e4f0ea;
+    --warn: #8a5a10; --warn-bg: #f7ecd9;
+    --danger: #8f2f2b; --danger-bg: #f7e6e4;
+    --accent: #1f5c8f; --accent-bg: #e3edf6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #eceae6; --ink-2: #a9a49c; --ink-3: #7d786f;
+      --page: #161513; --card: #211f1d; --line: #35322e; --line-2: #4a463f;
+      --alive: #6cc79c; --alive-bg: #1c3a2c;
+      --warn: #d9a84e; --warn-bg: #3a2e18;
+      --danger: #e08c86; --danger-bg: #3a201e;
+      --accent: #86b6dd; --accent-bg: #1b2c3b;
+    }
+  }
+  * { box-sizing: border-box; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font: 400 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    padding: 24px 16px 96px;
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .stage { width: 100%; max-width: 960px; }
+  .slide {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    aspect-ratio: 16 / 9; padding: 44px 52px; display: none;
+    flex-direction: column; overflow: hidden;
+  }
+  .slide.on { display: flex; }
+  .slide:focus { outline: none; }
+  .meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-3); margin-bottom: 26px; letter-spacing: .01em; }
+  h1 { font-size: 28px; font-weight: 500; line-height: 1.3; margin: 0 0 26px; max-width: 34ch; }
+  h1[tabindex="-1"]:focus { outline: none; }
+  .big { font-size: 68px; font-weight: 500; line-height: 1; letter-spacing: -.02em; }
+  .sub { font-size: 16px; color: var(--ink-2); }
+  .quote { font-size: 19px; color: var(--ink-2); line-height: 1.5; border-left: 3px solid var(--line-2); padding-left: 18px; margin: 0; max-width: 46ch; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+  .cards.two { grid-template-columns: repeat(2, 1fr); }
+  .cd { background: var(--page); border-radius: 8px; padding: 16px 18px; }
+  .cd .k { font-size: 13px; color: var(--ink-2); margin: 0 0 6px; }
+  .cd .v { font-size: 30px; font-weight: 500; margin: 0; line-height: 1.1; }
+  .cd .n { font-size: 13px; color: var(--ink-3); margin: 6px 0 0; }
+  .rows { display: flex; flex-direction: column; gap: 14px; }
+  .row { display: flex; gap: 20px; align-items: baseline; }
+  .row .lab { font-size: 13px; color: var(--ink-3); min-width: 62px; flex: none; }
+  .row .txt { font-size: 18px; }
+  .row.hi { background: var(--accent-bg); border-radius: 8px; padding: 12px 16px; margin: -2px -16px; }
+  .row.hi .lab, .row.hi .txt { color: var(--accent); }
+  .band { border-radius: 8px; padding: 16px 20px; font-size: 17px; line-height: 1.5; }
+  .band.d { background: var(--danger-bg); color: var(--danger); }
+  .band.n { background: var(--page); color: var(--ink-2); border-left: 3px solid var(--line-2); border-radius: 0; }
+  .foot { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
+  .foot.q { font-size: 13px; color: var(--ink-3); }
+  .asks { display: flex; flex-direction: column; gap: 18px; }
+  .ask { display: flex; gap: 16px; }
+  .ask .i { font-size: 15px; color: var(--ink-3); min-width: 16px; flex: none; }
+  .ask p { margin: 0; font-size: 18px; line-height: 1.5; }
+  .ask .lo { color: var(--ink-2); }
+  .tag { font-size: 13px; font-weight: 500; margin: 0 0 10px; }
+  .tag.g { color: var(--alive); } .tag.w { color: var(--warn); }
+  .col p { margin: 0 0 8px; font-size: 17px; line-height: 1.45; }
+  .col .n { font-size: 14px; color: var(--ink-3); margin: 0; }
+  .bar {
+    position: fixed; bottom: 0; left: 0; right: 0; background: var(--card);
+    border-top: 1px solid var(--line); padding: 10px 20px;
+    display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 14px;
+  }
+  button {
+    font: inherit; font-size: 14px; color: var(--ink); background: transparent;
+    border: 1px solid var(--line-2); border-radius: 6px; padding: 6px 14px; cursor: pointer;
+  }
+  button:hover { background: var(--page); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .count { color: var(--ink-2); min-width: 54px; text-align: center; font-variant-numeric: tabular-nums; }
+  .notes {
+    max-width: 960px; width: 100%; margin-top: 18px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 10px; padding: 22px 26px;
+    font-size: 16px; line-height: 1.7; color: var(--ink-2);
+  }
+  .notes[hidden] { display: none; }
+  .notes h2 { font-size: 14px; font-weight: 500; color: var(--ink-3); margin: 0 0 10px; letter-spacing: .02em; }
+  @media print {
+    body { padding: 0; background: #fff; }
+    .bar, .notes { display: none !important; }
+    .slide { display: flex !important; page-break-after: always; border: none; aspect-ratio: auto; height: 100vh; }
+  }
+</style>
+</head>
+<body>
+
+<p class="sr-only">Streakly quarterly review, six slides. Use the left and right arrow keys to move between slides, and press N to show or hide speaker notes.</p>
+
+<div class="stage">
+
+  <section class="slide on" id="s1" aria-label="Slide 1 of 6">
+    <div class="meta"><span>1 — the problem</span><span>Streakly · quarterly review</span></div>
+    <h1 tabindex="-1">Day-7 retention fell 9 points, and the mechanic is the cause — not the content.</h1>
+    <div style="display:flex; align-items:baseline; gap:18px; margin-bottom:28px;">
+      <span class="big">39%</span><span class="sub">Day-7 retention, down from 48%</span>
+    </div>
+    <p class="quote">Every complaint targets the streak system. Every piece of praise targets the lessons.</p>
+  </section>
+
+  <section class="slide" id="s2" aria-label="Slide 2 of 6">
+    <div class="meta"><span>2 — why now</span><span>Streakly · quarterly review</span></div>
+    <h1 tabindex="-1">We learned where the loss is — and that it is mostly not the shape we assumed.</h1>
+    <div class="cards">
+      <div class="cd"><p class="k">Day-1 activation</p><p class="v">90–93%</p><p class="n">flat, every cohort</p></div>
+      <div class="cd"><p class="k">From more breaking</p><p class="v">1.7 pt</p><p class="n">of a 10-point decline</p></div>
+      <div class="cd"><p class="k">Kept streaks, left anyway</p><p class="v">8.3 pt</p><p class="n">the rest of it</p></div>
+    </div>
+    <p class="foot">5 of 5 direct competitors ship a missed-day mechanic. We ship none.</p>
+  </section>
+
+  <section class="slide" id="s3" aria-label="Slide 3 of 6">
+    <div class="meta"><span>3 — the proposal</span><span>Streakly · quarterly review</span></div>
+    <h1 tabindex="-1">Ship the part the evidence supports. Hold the part that touches 2.1M users' streak state.</h1>
+    <div class="cards two">
+      <div class="col">
+        <p class="tag g">Ships now</p>
+        <p>Notification and Comeback surface</p>
+        <p class="n">Reversible. No streak-state migration.</p>
+      </div>
+      <div class="col">
+        <p class="tag w">Holds for the test</p>
+        <p>Production streak accounting</p>
+        <p class="n">Freeze bank, weekly goal, miss bank.</p>
+      </div>
+    </div>
+    <p class="foot">Option C as approved. Not a purchasable restore, not a notification-quality fix, not the pre-emptive warning.</p>
+  </section>
+
+  <section class="slide" id="s4" aria-label="Slide 4 of 6">
+    <div class="meta"><span>4 — evidence</span><span>Streakly · quarterly review</span></div>
+    <h1 tabindex="-1">The surface works. The retention number does not — and I am withdrawing it.</h1>
+    <div class="band d" style="margin-bottom:22px;">
+      <strong style="font-weight:500;">Withdrawn: the +30 pp Day-7 lift.</strong>
+      17.6 of 30 points come from users who never saw the screen.
+    </div>
+    <p style="margin:0 0 12px; font-size:19px;"><strong style="font-weight:500;">Return visit: 100% vs 14%</strong>
+      <span class="sub" style="font-size:15px;"> — breakers 20/20 against 4/25</span></p>
+    <p style="margin:0; font-size:17px; color:var(--ink-2);">The current "you lost your streak" push:
+      <strong style="font-weight:500; color:var(--ink);">0% action rate across 141 sends.</strong></p>
+    <p class="foot q">Interviews n=3 · NPS 10 verbatims, no scores · experiment data synthetic · no user has seen the prototype</p>
+  </section>
+
+  <section class="slide" id="s5" aria-label="Slide 5 of 6">
+    <div class="meta"><span>5 — the plan</span><span>Streakly · quarterly review</span></div>
+    <h1 tabindex="-1">Two tracks and one gate — and the gate lands the day before this meeting.</h1>
+    <div class="rows" style="margin-bottom:26px;">
+      <div class="row"><span class="lab">Now</span><span class="txt">Notification and Comeback surface, kill switch in scope</span></div>
+      <div class="row hi"><span class="lab">Gate</span><span class="txt">Query 1 — where the 9 points sit. <strong style="font-weight:500;">Raj, Wed 23rd</strong></span></div>
+      <div class="row"><span class="lab">Then</span><span class="txt">Full test, 1,568 per arm, breakers pre-registered</span></div>
+    </div>
+    <p class="band n" style="margin:0;">If Query 1 shows the loss sits with users who never established a streak,
+      <strong style="font-weight:500; color:var(--ink);">none of the three features addresses it.</strong></p>
+  </section>
+
+  <section class="slide" id="s6" aria-label="Slide 6 of 6">
+    <div class="meta"><span>6 — the ask</span><span>Streakly · quarterly review</span></div>
+    <h1 tabindex="-1">One thing to reverse if you want to, and two to confirm.</h1>
+    <div class="asks">
+      <div class="ask"><span class="i">1</span><p>Query 1 is assigned to Raj for Wednesday.
+        <span class="lo">I made the call rather than wait — reverse it now if you want it elsewhere.</span></p></div>
+      <div class="ask"><span class="i">2</span><p>Confirm &gt;50% Day-7 in 4 weeks still stands.
+        <span class="lo">Nothing we hold substantiates it.</span></p></div>
+      <div class="ask"><span class="i">3</span><p>Agree the +30 pp does not leave this team.
+        <span class="lo">Board material included, until a powered re-run.</span></p></div>
+    </div>
+    <p class="foot">Still needs a name: the CAC input — the only open item outside the squad.</p>
+  </section>
+
+</div>
+
+<div class="notes" id="notes" hidden>
+  <h2>Speaker notes</h2>
+  <p id="note-body"></p>
+</div>
+
+<div class="bar">
+  <button id="prev" aria-label="Previous slide">← Back</button>
+  <span class="count" id="count">1 / 6</span>
+  <button id="next" aria-label="Next slide">Next →</button>
+  <button id="toggle" aria-pressed="false">Notes</button>
+</div>
+
+<p class="sr-only" role="status" aria-live="polite" id="live"></p>
+
+<script>
+(function () {
+  var NOTES = [
+    "Before slide 1, over the title: “Before I walk the problem, here is where I land. We ship the notification and the Comeback surface now and hold the production streak changes for a properly powered test. Query 1 is assigned to Raj for Wednesday — it sat unowned for four days and I stopped waiting, so tell me if you want it elsewhere. And I want to withdraw a number I put in front of you.” Then: 39% against 48% is the one number I would defend without a caveat. Across three interviews and ten verbatims, not one person criticised the lessons, the tracks, or the five-minute format — so we have already ruled out the expensive direction. I am deliberately not claiming v2 caused it.",
+    "What changed is that we stopped guessing where the nine points went. Day-1 activation is flat at 90 to 93% across every cohort, so users arrive and leave inside days two to six — but when we decomposed a ten-point decline, more people breaking their streaks accounted for only 1.7 points. The other 8.3 came from users who kept their streaks intact and left anyway, which matters because all three approved features act on the break. The reason this is urgent rather than interesting is that MAU is still growing 28% year over year, so the leak is invisible at the top line while raising what we spend to stay flat. You have asked three times what that costs in acquisition spend and I still do not have it — I am not going to estimate it in front of you, and it is now Query 1c.",
+    "This is Option C exactly as you approved it, and the property the design turns on is that a week-1 user's first missed day costs them nothing visible. What is new is the split: the notification and surface ship now because they are reversible and touch no streak state, and the production accounting holds until the full test reads out, because it migrates 2.1M users' streak history and a revert does not un-corrupt it. I have put what this is not on the page because three of the four have already come back at me as questions. What I want you to take away is that this is not a change of direction — it is the proceeds-and-holds split you already approved, applied to the first real decision it touches.",
+    "Two things happen here and I want the harder one first. I am withdrawing the +30 percentage point Day-7 result: 17.6 of those 30 points came from users who never saw the screen, the day-7 outcome was never observed in the data, and the study could only ever detect an effect of 28 points or larger — so it found one. What does hold is the return visit: every treated user came back the next day against 14% of control, and among users who had genuinely broken a streak it was 20 out of 20 against 4 out of 25. Set that beside a current notification with a zero percent action rate across 141 sends, and beside Tom, who told us “there was no way to recover it, nothing, so I gave up.” And you should know no user has seen the prototype — the reactions we have designed against are persona exercises, and the five real sessions that fix that are being scheduled now.",
+    "Two tracks and one gate, and the gate is the news: Query 1 is assigned to Raj and due Wednesday, which means it lands the day before we are sitting here. The streak accounting, the schema migration and any external commitment all hold until it does, and the full test behind it is specified and powered at about 1,568 users per arm with breakers pre-registered. The one risk on the page is the one the gate exists to test — Query 1 could show the loss sits with users who never established a streak, in which case none of the three features touches it. Three more I will say rather than show: the Comeback screen's audience is bounded between nothing and a third of new signups because our own Freeze is designed to prevent the break it responds to, with the point value arriving Wednesday; the surface's only entry point is a notification with no in-app fallback; and fitting the test into eight weeks needs at least 1,120 new signups a week, which we do not hold. If you interrupt anywhere on this deck it will be here, which is why the page is three rows.",
+    "One thing to reverse if you want to, and two to confirm. Query 1 is assigned to Raj and due Wednesday the 23rd — it had nobody on it for four days, and rather than keep asking I made the call, so if you want it somewhere else say so now while there is still time to move it. Second, confirm that above 50% Day-7 within four weeks still stands, because nothing we currently hold substantiates it — and if it stands I want it on the record as a commitment made on judgement rather than evidence. Third, I would like us to agree the +30 points does not leave this team, board material included, until it survives a powered re-run. The gate you asked for on Thursday did its job — it is why I can tell you the number is wrong before we built anything on it — and it is now owned and dated rather than waiting on either of us."
+  ];
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0, notesOpen = false;
+  var notes = document.getElementById('notes');
+  var noteBody = document.getElementById('note-body');
+  var count = document.getElementById('count');
+  var live = document.getElementById('live');
+  var toggle = document.getElementById('toggle');
+
+  function render(focus) {
+    slides.forEach(function (s, n) { s.classList.toggle('on', n === i); });
+    count.textContent = (i + 1) + ' / ' + slides.length;
+    noteBody.textContent = NOTES[i];
+    live.textContent = 'Slide ' + (i + 1) + ' of ' + slides.length;
+    if (focus) slides[i].querySelector('h1').focus();
+  }
+  function go(n) {
+    var next = Math.max(0, Math.min(slides.length - 1, n));
+    if (next === i) return;
+    i = next; render(true);
+  }
+  document.getElementById('prev').addEventListener('click', function () { go(i - 1); });
+  document.getElementById('next').addEventListener('click', function () { go(i + 1); });
+  toggle.addEventListener('click', function () {
+    notesOpen = !notesOpen;
+    notes.hidden = !notesOpen;
+    toggle.setAttribute('aria-pressed', String(notesOpen));
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.target.tagName === 'BUTTON' && (e.key === ' ' || e.key === 'Enter')) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') { go(i + 1); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { go(i - 1); e.preventDefault(); }
+    else if (e.key === 'Home') { go(0); e.preventDefault(); }
+    else if (e.key === 'End') { go(slides.length - 1); e.preventDefault(); }
+    else if (e.key === 'n' || e.key === 'N') { toggle.click(); }
+  });
+  render(false);
+})();
+</script>
+</body>
+</html>

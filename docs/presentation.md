@@ -119,24 +119,38 @@ prototype.** 5 usability sessions are being scheduled, 3 confirmed.
 
 ## Slide 5 · The plan
 
-**Assertion:** Two tracks, one gate, and one number I do not have yet.
+**Assertion:** Two tracks and one gate — and the gate lands the day before this meeting.
+
+*Thinned 2026-09-17 after rendering the slides. It was the busiest page in the deck:
+four timeline rows, three risks compressed into one line, and a dependency — with the
+risks, the part he actually interrupts on, set in the smallest type. **Three rows, one
+risk. The rest moved to the notes.***
 
 **On the slide**
 
 | | Milestone | Status |
 |---|---|---|
-| Now | Notification + Comeback surface | Reversible, no migration. Kill switch in scope |
-| **Gate** | **Query 1** — decomposes the 9 points by week-1 behaviour | **Raj, due Wed 2026-09-23** — so the answer is in this room, not promised in it |
-| Then | Full test: MDE **5 pp**, 80% power, **1,568 per arm**, breakers pre-registered | ~3 weeks if the eligible pool is 85,000 WAU |
-| Hold | Streak accounting, schema migration, external comms | Until Query 1 lands |
+| Now | Notification + Comeback surface | Kill switch in scope |
+| **Gate** | **Query 1** — where the 9 points sit | **Raj, Wed 23rd** |
+| Then | Full test, **1,568 per arm**, breakers pre-registered | After the gate |
 
-**Risks — three, named**
-1. **Query 1 could show the loss sits with users who never established a streak.** None of the three features addresses that case
-2. **The Comeback screen's audience is shrunk by the other two features and has never been sized.** Our own brief says so
-3. **Reachability** — the surface's only entry point is a notification, and there is no in-app fallback
+**One risk, and it is the one the gate exists to test**
 
-**The open dependency:** 8 weeks requires **≥1,120 new signups per week**, and we do
-not hold that figure. Day-7 is a new-signup metric, so WAU is not the enrolment pool.
+> If Query 1 shows the loss sits with users who never established a streak, **none of
+> the three features addresses it.**
+
+**Dropped from the page, moved to the notes — say these, do not show them**
+
+- **The Hold row** (streak accounting, schema migration, external comms). Slide 3
+  already carries the ships-now / holds split; repeating it here was duplication.
+- **Audience risk.** Bounded 0–36% of new signups, point value lands Wednesday with
+  Query 1b. **Partly answered since the deck was drafted**, so it no longer needs
+  page space — but it is the objection most likely to cut the feature, so it must be
+  said aloud.
+- **Reachability.** No in-app fallback behind the notification. Real, but a spec gap
+  rather than a leadership decision at this altitude.
+- **The enrolment dependency.** 8 weeks needs ≥1,120 new signups/week and we do not
+  hold the figure. A dependency on a number, not a decision for him.
 
 ---
 

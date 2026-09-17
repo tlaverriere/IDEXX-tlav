@@ -85,21 +85,22 @@ real usability sessions that fix that are being scheduled now with three confirm
 
 ## Slide 5 · The plan
 
-Two tracks and one gate. The surface work proceeds immediately with a kill switch in
-scope; the full test is specified and powered — five points minimum detectable
-effect, 80% power, about 1,568 users per arm with streak-breakers pre-registered as
-the primary population — and the streak accounting, the schema migration and any
-external commitment all hold until Query 1 lands. Query 1 itself is days of work on
-data we already have, and it is the only item on this slide with nobody assigned to
-it. Three risks worth your attention: Query 1 could come back showing the loss sits
-with users who never established a streak, in which case none of the three features
-touches it; the Comeback screen's audience is shrunk by the other two features
-because they are designed to prevent the break it responds to, and **nobody has sized
-what is left**; and the surface's only entry point is a notification, with no in-app
-fallback for a user who has turned push off. One honest gap in the timeline — fitting
-the test into eight weeks requires at least 1,120 new signups a week, and because
-Day-7 is a new-signup metric our 85,000 weekly actives are not the enrolment pool, so
-I need that figure from Raj before I commit to the date.
+Two tracks and one gate, and the gate is the news on this slide: **Query 1 is
+assigned to Raj and due Wednesday, which means it lands the day before we are sitting
+here** — the streak accounting, the schema migration and any external commitment all
+hold until it does, and the full test behind it is already specified and powered at
+about 1,568 users per arm with streak-breakers pre-registered. The one risk I want on
+the page is the one the gate exists to test: **Query 1 could come back showing the
+loss sits with users who never established a streak, in which case none of the three
+features touches it.** Three more I will say rather than show — the Comeback screen's
+audience is bounded between nothing and a third of new signups because our own Freeze
+is designed to prevent the break it responds to, and the point value arrives Wednesday
+with the same query; the surface's only entry point is a notification with no in-app
+fallback for a user who has turned push off; and fitting the full test into eight
+weeks needs at least 1,120 new signups a week, which we do not hold, because Day-7 is
+a new-signup metric and our 85,000 weekly actives are not the enrolment pool. **If he
+interrupts anywhere on this deck it will be here, which is exactly why the page is
+now three rows instead of nine lines.**
 
 ## Slide 6 · The ask
 
