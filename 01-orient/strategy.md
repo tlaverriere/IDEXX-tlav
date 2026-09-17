@@ -57,6 +57,10 @@ The hypothesis still rests on the two weakest rows — Raj's figure and v2 causa
 
 The data is synthetic and does not reproduce Streakly's real figures, so this is not evidence the condition fails. It is the clearest statement yet of *how* it would fail, and it is the exact decomposition Query 1 was specified to produce on real data. Worth putting to Marcus before the query lands — an approved direction plus an inconvenient answer is harder to absorb than an inconvenient answer that was flagged as possible in advance.
 
+**5. Enough users break *through* protection to justify a surface that catches them.** *Added 2026-09-17, and it is a condition we created.* Candidate 1 fires on a broken daily streak; Candidate 3 is designed to stop that streak breaking. **Approving both means one feature's success reduces the other's audience.** Sized as a bound, it sits between **0% and 36.2% of new signups** — and the lower end is reachable, because a week-1 user's seeded freeze absorbs a single missed day entirely. If most week-1 breaks are one missed day, Candidate 1 has no audience. See Candidate 1 below and `../data/audience-sizing.md`.
+
+**This is the only one of the five conditions that is about our own design rather than about the world**, which makes it the cheapest to test and the easiest to forget. It closes from the same query as Query 1.
+
 ## Approved interventions
 
 > **Approved 2026-09-16.** Marcus approved **Option C** — Candidate 1 (Comeback Screen) and Candidate 3 (Freeze + Weekly Streak) ship together, with the **release gated on Query 1** rather than assumed by it.
@@ -76,6 +80,28 @@ Worth stating plainly, because the research cuts both ways: the *problem* it tar
 **Competitive support — added 2026-09-14.** The scan found **no competitor running a designed return session as a standing surface**; the position is unowned. Duolingo sized it inadvertently: a one-time June 2026 offer to restore a lapsed user's longest-ever streak for three lessons drew **15.4M revivals, roughly 8M from users with no active streak**, which management called evidence of the scale of the win-back opportunity — then left it as a campaign rather than building it. Caveat carried forward: part of why this space looks empty is that no company documents its post-miss screen, so "unowned" is partly "not observable by desk research." See `../02-research/competitive-matrix.md`, Gap 1.
 
 **Approved 2026-09-16** as part of Option C. The coverage gap above is unchanged by the approval: it fires on a break, so it still cannot reach a pre-break week-1 user or the drift path. Shipping it does not close either.
+
+**Audience sized as a bound — added 2026-09-17. This is now the sharpest statement of the coverage gap, and it is arithmetic rather than a caveat.**
+
+The addressable audience is **between 0% and 36.2% of new signups**, and the point value is not derivable from anything we hold. Full working in `../data/audience-sizing.md`.
+
+The definition required no data and is exact. A week-1 user holds **one seeded freeze**, so the daily streak breaks on the **second** missed day, not the first. And *lead with what survived* needs the week streak alive, which week 1 tolerates to four misses. So:
+
+| Misses in week 1 | Daily streak | Week streak | What the user sees |
+|---|---|---|---|
+| 0–1 | Protected | Alive | **Nothing.** The surface never fires |
+| **2–4** | Broken | Alive | **The concept working as designed** |
+| 5+ | Broken | Dead | The **memento fallback** — what the design was built to avoid |
+
+**The lower bound is a live possibility we created ourselves.** If most week-1 breaks are single missed days, **Candidate 3's freeze deletes Candidate 1's audience.** This is what the decision brief meant by *"B shrinks the Comeback Screen's audience"*, now stated as arithmetic. **Recorded plainly: this makes descoping Candidate 1 more defensible than it was, not less.**
+
+Three consequences that follow from the rules alone, no data needed:
+
+1. **The audience is a curve, not a number.** The freeze bank grows to cap 7, so the population breaking through **shrinks across the first 12 weeks** — then **rises again at the day-85 cliff** recorded below.
+2. **The well-designed state is concentrated in week 1 and degrades for tenured users.** The good case needs **freeze-poor and week-streak-rich**, which is precisely a week-1 user holding one seeded freeze. That is an argument *for* the candidate: its best state lands squarely in the cohort Day-7 measures. But for a freeze-rich user the arithmetic inverts — known fact 8 in `../docs/hypothesis.md` — and the week streak dies first, so **Tom, eight days absent and the user whose quotes justified building this, receives the memento.**
+3. **Audience is not event volume.** The once-per-rolling-7-days cap means a repeat breaker counts once per week, so any build estimate sized off break events overstates the load.
+
+**What closes it, and it is not new analysis.** Raj's *"~2x churn after two consecutive missed days"* finding is **defined on the ≥2-miss population**, which is this cohort. His cut was ≥2 *consecutive*; the freeze absorbs any single miss regardless of adjacency, so we need ≥2 *total* — a looser filter on a query he has already written. One distribution — **distinct missed days in the first 7, counted 0/1/2/3/4/5+** — yields the audience, the memento share and the day-8 cliff size at once. **Fold it into the Query 1 brief as one more `GROUP BY`.**
 
 ### Candidate 2 — 26-of-30 goal, alongside the streak freeze · **SUPERSEDED**
 
@@ -222,9 +248,10 @@ Tone, timing and volume. One NPS respondent received three notifications in an a
 
 ## Open strategic questions
 
-- What is the recovery target, and by when? Nothing has been set.
-- Is recovering 48% the goal, or is 48% itself no longer the right benchmark post-v2?
-- What is the cost of the retention leak in acquisition spend? Quantifying this would tell us how much rigor we can afford to buy.
+- ~~What is the recovery target, and by when? Nothing has been set.~~ **Answered 2026-09-16: Day-7 above 50% within 4 weeks of launch.**
+- ~~Is recovering 48% the goal, or is 48% itself no longer the right benchmark post-v2?~~ **Answered 2026-09-16 — and answered against 48%.** The target is *above* the old baseline, not a return to it. **A 47% result reverses the decline and misses the target**, so the two framings render opposite verdicts on the same number and only one may be used.
+- What is the cost of the retention leak in acquisition spend? Quantifying this would tell us how much rigor we can afford to buy. **Still open, and now asked three times by Marcus — the one item in his profile marked *"partly answered, never quantified."* Folded into the Query 1 brief 2026-09-17 so it returns from a pass that has to run anyway, rather than surviving a fourth week as a standalone question.**
+- **How many users break *through* protection, and is that population large enough to justify Candidate 1?** *(Opened 2026-09-17.)* Bounded at **0–36.2% of new signups**; the point value needs one distribution — distinct missed days in the first 7 — which **Raj has already segmented for a different purpose.** This is condition 5 above, it is the only must-be-true about our own design rather than about the world, and it closes from the same query as Query 1. See `../data/audience-sizing.md`.
 - Does the drift path come into scope, or do we deliberately narrow to break-triggered churn and say so out loud? *(Opened 2026-09-14.)*
 - How do we get week-1-segmented evidence before committing to anything? Every source we hold — dashboard aside — is stage-mixed. *(Opened 2026-09-14.)*
 - Does notification quality split off as a cheap, separable track that doesn't wait on causality? *(Opened 2026-09-14; see `change_log.md` pending items.)*
