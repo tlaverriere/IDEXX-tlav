@@ -16,7 +16,7 @@ Build a durable workspace and skills worth keeping, then layer on an autonomous 
 
 | Agent | Trigger | Output | Boundaries |
 |-------|---------|--------|------------|
-| Metric pulse | ___ | ___ | ___ |
+| Metric pulse | Nightly, delivers Monday 8am | Digest: Day-7 retention + streak-break rate, channel breakdown, alert if either moves ≥2pt week over week | Flags where to look, never a cause. No live data connection, scheduler, or delivery channel yet — spec-level, proven against sample data. Spec: `agents/metric-pulse.md` |
 | Weekly insight | ___ | ___ | ___ |
 | Anomaly → hypothesis | ___ | ___ | ___ |
 

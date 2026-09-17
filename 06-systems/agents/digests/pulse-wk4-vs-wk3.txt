@@ -1,0 +1,15 @@
+﻿Streakly Retention Pulse - Week 4 vs Week 3
+
+Day-7 retention: 27% (|down| 4.0pt)  ALERT (>= 2 pt move)
+Streak-break rate: 35% (|down| 10.0pt)  ALERT (>= 2 pt move)
+
+By channel (Day-7):
+  organic: 29.4% (|flat| flat)
+  paid: 14.7% (|down| 26.5pt)  <- watch this
+  referral: 37.5% (|up| 15.6pt)
+
+Top signal: paid channel Day-7 moved -26.5 pt week over week. Check for a cause before next Monday.
+
+Baseline on file (live product, CLAUDE.md): 39% Day-7. This run compares sample-data week 3 to week 4, not the live baseline -- there is no production data source wired in yet.
+
+Next: run anomaly diagnosis? Reply YES to trigger 06-systems/agents/anomaly-diagnosis.md.
