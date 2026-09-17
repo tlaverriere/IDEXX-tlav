@@ -1,0 +1,6 @@
+﻿LOW-CONFIDENCE ALERT -- Thu Sep 17, 11:11AM
+
+Trigger: Day-7 retention moved -4 pt (39% -> 35%)
+Top hypothesis only reaches 3/10: Streak-reset copy regression after last deploy
+No SQL dispatched -- confidence bar not cleared. Needs a human look, not a query.
+

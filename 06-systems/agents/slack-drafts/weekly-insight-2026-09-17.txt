@@ -1,0 +1,15 @@
+﻿Streakly Weekly Insight, Thu Sep 17
+
+Done this week:
+- Comeback screen PRD finalized and pressure-tested against three reviewers -- Raj, Marcus, and a churned user (docs/prd.md, docs/objection-log.md)
+- Full experiment design specified and pre-registered -- 1,568 users per arm, kill conditions set, no interim efficacy looks (data/experiment-design.md)
+- Metric pulse and anomaly-diagnosis agents built and run for real against sample data, not just spec'd (06-systems/agents/)
+
+Changed this week:
+- Paid-channel Day-7 dropped 26.5pt week-over-week in the sample data (41.2% -> 14.7%) -- flagged as likely noise at n~34 per channel-week, not a confirmed signal (data/retention.csv via metric-pulse's own join)
+- Comeback screen open rate climbed 28% -> 56% across the pilot's four sends -- the one pilot number holding up under scrutiny, unlike the withdrawn +30pt Day-7 claim (data/metric-findings.md)
+
+Watch next week:
+- Query 1 lands Wednesday 2026-09-23 (Raj) -- decomposes the 9-point Day-7 decline and decides whether any of the three approved features address it; the release is gated on the answer (docs/query1-handoff.md)
+
+Saved to ..\..\reports\2026-09-17.md

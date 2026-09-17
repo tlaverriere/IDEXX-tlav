@@ -1,0 +1,24 @@
+﻿Streakly Anomaly Detected, Thu Sep 17, 11:11AM
+
+Trigger: Day-7 retention dropped 4pts (39% -> 35%) overnight
+
+Metric tree decomposition:
+Streak-break rate: 22% -> 29% (7 pt)
+Sessions in week 1: 4.1 -> 3.2 (-22%)
+Push opt-in rate: 54% -> 51% (-3 pt)
+
+Top 3 hypotheses:
+1. Push notification delivery issue (high likelihood, confidence 8/10) -- Sessions in week 1 dropped -22% and push opt-in moved the same direction (-3 pt) in the same window -- the standard signature of users not receiving the nudge rather than ignoring it.
+2. New user cohort quality shift from paid channel (medium likelihood, confidence 5/10) -- Paid channel flagged by the pulse digest as down -4 pt last week -- corroborating context from outside this metric tree, not one of its three drivers.
+3. Streak-reset copy regression after last deploy (low likelihood, confidence 3/10) -- Mechanically plausible but no field in this decomposition confirms or rules it out on its own -- always included as the residual catch-all, capped low until it's checked directly against deploy timing.
+
+SQL to confirm hypothesis 1:
+
+SELECT date, COUNT(*) as push_sent, SUM(delivered) as push_delivered,
+       AVG(opened) as open_rate
+FROM streakly_notifications
+WHERE sent_date >= CURRENT_DATE - 7
+GROUP BY date
+ORDER BY date;
+
+Logged to outcome-log.md. Run this query and reply with the output. I'll interpret.

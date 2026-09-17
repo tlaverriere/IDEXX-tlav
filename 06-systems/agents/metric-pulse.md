@@ -14,6 +14,13 @@ things this project does not currently have, so none of them are faked here:
   `data/metric-findings.md` and `data/metric-diagnosis.md`.
 - **A scheduler.** "Run nightly, deliver Monday 8am" is a schedule spec, not a running
   cron job or n8n workflow — §4 covers how it would actually get one.
+  **Clarified 2026-09-17, while wiring `anomaly-diagnosis.md`:** "nightly" has to mean the
+  alert check (`AnyAlert`) runs every night, not just the human-readable digest — an
+  anomaly worth chaining to a diagnostic loop doesn't wait for Monday. "Deliver Monday
+  8am" describes when the *formatted* digest goes out on a normal week, not a limit on
+  how often the underlying comparison runs. The script already supports this — `AnyAlert`
+  is evaluated on every invocation regardless of which weeks are passed in — this note
+  just corrects the schedule description, which read as weekly-only.
 - **A Slack (or email) connector.** The digest is a file on disk. "Reply YES to trigger"
   is a written interface contract for whatever eventually delivers this, not a live button.
 
@@ -204,4 +211,4 @@ conditions fire correctly on a genuine 4pt and 10pt move.
 |---|---|
 | **Does** | Compute two rates, their week-over-week delta, and a channel breakdown, from a real data join. Flag when either crosses 2pt. Name the channel most responsible. |
 | **Does not** | Diagnose a cause, access production data, run on a schedule, or deliver anywhere. Those are the three gaps in the header, plus the explicit hand-off to the next agent. |
-| **Chains to** | `06-systems/agents/anomaly-diagnosis.md` (not yet built) on the "Reply YES" line — the interface contract is: anomaly diagnosis takes an alerted metric, its direction, and magnitude as input, and does not re-derive them. |
+| **Chains to** | `06-systems/agents/anomaly-diagnosis.md`, built 2026-09-17, on the "Reply YES" line — anomaly diagnosis takes the alerted metric, its direction, magnitude, **and this agent's watch-channel flag** as input, and does not re-derive any of them. |
