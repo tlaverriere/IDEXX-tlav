@@ -230,7 +230,9 @@ Two items run ahead of the Thursday gate. Both qualify on the same test: **cheap
 
 Tone, timing and volume. One NPS respondent received three notifications in an afternoon and disabled all of them — which also costs us our primary re-engagement channel. Reads as a defect rather than a design debate. One of our three interview subjects named the notification specifically.
 
-**Unassigned.** Logged in `change_log.md` pending items.
+**Owner: Lena, assigned 2026-09-17. Raj supports on delivery** — timing, volume and the frequency cap are his; tone is hers. Handoff at `../docs/fast-track-handoff.md`.
+
+**Reframed 2026-09-17 — this may not be a fast track.** The Comeback surface’s only entry point is a notification and QA found **no in-app fallback**, so a user who has stopped trusting our pushes cannot reach the feature in any state. **FT1 may gate the Comeback screen rather than run beside it** — which is an argument for doing it first, not for doing more. See `../docs/hypothesis.md` open question 10 and `../docs/objection-log.md` T1.
 
 ### Fast track 2 — An acknowledgment moment inside week 1
 
@@ -244,7 +246,9 @@ Tone, timing and volume. One NPS respondent received three notifications in an a
 
 **The risk worth naming.** Adding celebration without addressing the reset means congratulating a user on day 3 and zeroing them on day 4. That could read as tone-deaf rather than encouraging, and it compounds the punishment framing Lena documented. This is cheap to build and cheap to get wrong, so sequencing against the reset question matters.
 
-**Unassigned.** Owner and target date needed Thursday.
+**Owner: Lena, assigned 2026-09-17.** Handoff at `../docs/fast-track-handoff.md`. **First action is Step 0 above, not design work** — it costs minutes and may dissolve the item.
+
+**Overlap to resolve early, added 2026-09-17.** `../docs/design-review.md` Part 2 argues the highest-impact week-1 change is a **day-1 reassurance moment**, on audience arithmetic — it reaches every new user where the Comeback state reaches only week-1 users who break. **FT2 and that may be the same work.** If so there is one thing to build, not two; if not, the difference needs stating, because both are currently described as "an acknowledgment inside week 1."
 
 ## Open strategic questions
 

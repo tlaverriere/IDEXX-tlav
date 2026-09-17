@@ -43,7 +43,9 @@ Query 1 decomposes the 9-point decline by week-1 behaviour. If the loss sits wit
 
 **Query 1 is assigned — Raj, due Wednesday 2026-09-23.** Assigned 2026-09-17 by Trevor rather than waited on; handoff at `../docs/query1-handoff.md`.
 
-**Still unassigned and needed:** owners for both fast tracks, a CAC input for Query 1c (finance, not Raj), and the 8–12 week-1 interviews. *(A recovery target and the attribution decision were both answered 2026-09-16.)*
+**Fast tracks assigned 2026-09-17 — both to Lena, with Raj supporting FT1 delivery.** Handoff at `../docs/fast-track-handoff.md`.
+
+**Still unassigned and needed:** a CAC input for Query 1c — finance or growth, not squad. *(A recovery target and the attribution decision were both answered 2026-09-16.)*
 
 ## Squad and stakeholders
 

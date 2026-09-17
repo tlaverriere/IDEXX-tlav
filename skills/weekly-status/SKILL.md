@@ -221,9 +221,15 @@ check against `CLAUDE.md` before relying on it. *Last refreshed 2026-09-17.*
   belongs in **In Progress with its date**, not in Blockers — and **it moves back to
   Blockers if the date slips**, because the gate is on the record as the reason the
   approval was sound. Handoff at `docs/query1-handoff.md`.
-- **Still genuinely unassigned, and these are the Blockers now:** a CAC input for
-  Query 1c (finance, not Raj), owners for both fast tracks, and the 8–12 week-1
-  interviews.
+- **Both fast tracks are assigned — Lena, 2026-09-17**, with Raj supporting FT1 on
+  delivery. **FT1 may be a prerequisite rather than a parallel track**: the Comeback
+  surface's only entry point is a notification and there is no in-app fallback.
+- **Capacity risk to report, not bury: Lena now holds both fast tracks plus the
+  register question, the empty state, all Comeback copy and the 8–12 week-1
+  interviews.** The interview timeline is the thing at risk. Ask about it explicitly
+  rather than reporting the tracks as simply "assigned."
+- **Still genuinely unassigned, and this is the Blocker now:** a CAC input for
+  Query 1c — finance or growth, not squad.
 - **Do not report the week-5 pilot as a win.** Its +30 pp Day-7 result does not hold
   — 17.6 of the 30 points come from users who never saw the feature, and day-7 was
   never observed in the data. The defensible result is the **return visit**
@@ -322,7 +328,7 @@ confirmed. No user has seen the prototype yet.
 
 ## Open, needs a name
 - CAC input for Query 1c. Finance or growth, not Raj.
-- Both fast tracks still have no owner.
+- CAC input for Query 1c is the only fully unowned item left.
 ```
 
 What the example does: gives Raj file paths and scope consequences, gives Lena an

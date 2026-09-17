@@ -106,5 +106,5 @@ chance to say so before Wednesday.
 | Item | Needs |
 |---|---|
 | **CAC input for Query 1c** | Finance or growth. Not Raj's |
-| **Owners for both fast tracks** | Notification quality, and the week-1 acknowledgment moment |
+| ~~Owners for both fast tracks~~ | **Assigned to Lena later the same day** — see `fast-track-handoff.md` |
 | **8–12 week-1 interviews** | Lena. The only item measured in weeks, and the one that closes her evidence gap |

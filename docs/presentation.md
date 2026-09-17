@@ -5,8 +5,13 @@
 ## The spine
 
 **One sentence:** *Retention is leaking in week 1, we have built the thing that
-brings lapsed users back, the number we thought proved it does not hold, and the
-gate that decides whether we are solving the right problem still has nobody on it.*
+brings lapsed users back, the number we thought proved it does not hold — and the
+gate that decides whether we are solving the right problem is now owned, dated, and
+lands the day before this meeting.*
+
+*Updated 2026-09-17: the spine used to end "still has nobody on it." Query 1 was
+assigned, which turns the deck's weakest point into its strongest — we are no longer
+asking for the gate to be staffed, we are reporting what it found.*
 
 **Arc:** problem → what we learned → what we are shipping → what the evidence does
 and does not support → the plan → the ask.
@@ -144,9 +149,13 @@ not hold that figure. Day-7 is a new-signup metric, so WAU is not the enrolment 
 2. **Confirm >50% Day-7 in 4 weeks still stands** — nothing we now hold substantiates it. If it stands, it is a commitment made on judgement, and that should be on the record
 3. **Agree the +30 pp does not leave this team**, including board material, until a powered re-run
 
-**Still unassigned, and named so they are not mistaken for covered:** the CAC input
-for Query 1c (finance, not Raj), owners for both fast tracks, and the 8–12 week-1
-interviews.
+**Still unassigned, and named so it is not mistaken for covered:** the CAC input for
+Query 1c — finance or growth, not squad.
+
+**Capacity flag, said out loud rather than left in a file:** both fast tracks went to
+Lena, on top of the register question, the empty state, all Comeback copy and the
+8–12 week-1 interviews. **The interview timeline is the thing at risk**, and it is
+what closes our only real-user evidence gap.
 
 **Close on:** *the gate did its job — it made this checkable, and it is now owned
 and dated. What it needs from you is nothing, unless you disagree.*

@@ -109,8 +109,8 @@
 |---|---|---|
 | **Query 1** *(pre-filled — confirm, don't re-decide)* | **Raj** | **Wed 2026-09-23** |
 | **CAC input for Query 1c** | *finance / growth — unassigned* | |
-| **Fast track 1** — notification quality | | |
-| **Fast track 2** — week-1 acknowledgment | | |
+| **Fast track 1** — notification quality *(pre-filled)* | **Lena** (Raj: delivery) | |
+| **Fast track 2** — week-1 acknowledgment *(pre-filled)* | **Lena** | |
 | | | |
 
 ## Disagreements recorded

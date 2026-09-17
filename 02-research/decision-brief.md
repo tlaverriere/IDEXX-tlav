@@ -11,7 +11,7 @@
 >
 > **Not settled at the meeting, and still needed:** an owner and date for Query 1, owners for both fast tracks, a recovery target, and whether to instrument for attribution.
 >
-> **Status of those four, as of 2026-09-17 — the list above is preserved as the record of the meeting, not as current state.** Query 1 is **assigned to Raj, due Wednesday 2026-09-23** (`../docs/query1-handoff.md`); the recovery target is set at **>50% Day-7 within 4 weeks**; attribution is answered with **two independent 50/50 splits**. **Only the fast-track owners remain open** — plus a new item, a CAC input for Query 1c.
+> **Status of those four, as of 2026-09-17 — the list above is preserved as the record of the meeting, not as current state.** Query 1 is **assigned to Raj, due Wednesday 2026-09-23** (`../docs/query1-handoff.md`); the recovery target is set at **>50% Day-7 within 4 weeks**; attribution is answered with **two independent 50/50 splits**. **Fast-track owners were assigned 2026-09-17 — both to Lena.** **Only one item from this list remains open**, plus a new one: a CAC input for Query 1c, which is finance rather than squad.
 
 **Sources:** `interview-synthesis.md` (n=3), `nps-analysis.md` (10 verbatims), `competitive-matrix.md` (5 competitors + 1 control), external user forums, and `../01-orient/strategy.md` for the full design. **On the external voice:** Reddit is inaccessible from our research tooling, so that layer is Hacker News and the Clozemaster forum — real users, different platform. Labelled **external voice** throughout, never presented as Reddit.
 
@@ -131,7 +131,7 @@ Nothing that Query 1 could invalidate gets built in the interim, and the hold is
 
 1. **Direction: A, B or C.**
 2. ~~An owner and date for Query 1.~~ **Settled 2026-09-17 — Raj, due Wednesday 2026-09-23.** *(Was: the one thing I would not ship without, and days of work on data we already have.)*
-3. **Owners for both fast tracks** — notification quality, and an acknowledgment moment inside week 1. Covered by none of these features.
+3. ~~Owners for both fast tracks~~ **— assigned 2026-09-17, both to Lena, Raj supporting FT1 delivery.** *(Notification quality and an acknowledgment moment inside week 1. Covered by none of these features.)*
 4. ~~A recovery target.~~ **Set 2026-09-16 — Day-7 above 50% within 4 weeks of launch.**
 5. **If C: whether to instrument for attribution**, accepting the cost, or to accept that we won't know which feature did the work.
 
