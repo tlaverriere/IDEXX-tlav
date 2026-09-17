@@ -50,6 +50,49 @@ For each segment, in both periods: share of cohort, and Day-7 retention within t
 
 Answers claims A and D at once. Runs on the same data as the replay.
 
+### Query 1b — Miss-count distribution within segment (a) · *added 2026-09-17*
+
+**Specification.** For segment (a) — started a streak and broke it within 7 days — report the distribution of **distinct missed days in the first 7**, bucketed:
+
+```
+0  ·  1  ·  2  ·  3  ·  4  ·  5+
+```
+
+Both periods, share of segment and Day-7 retention within each bucket.
+
+**Why it is nearly free.** Same cohort, same window, same table as Query 1. It is one additional `GROUP BY` on a query that has to run regardless. **And Raj has already built the segment** — his *"~2x churn after two consecutive missed days"* finding is defined on the ≥2-miss population. His cut was ≥2 *consecutive*; this needs ≥2 *total*, which is a looser filter on the same logic.
+
+**What one distribution yields, all at once:**
+
+| Output | Read from |
+|---|---|
+| **Addressable audience for Candidate 1** | Buckets 2–4. A week-1 user's seeded freeze absorbs one missed day, so the daily streak breaks on the **second** |
+| **Memento-fallback share** | Bucket 5+. Both streaks dead — the state the design was built to avoid leading with |
+| **Users the Freeze fully protects** | Buckets 0–1. These users never see the Comeback screen at all |
+| **Size of the day-8 cliff** | Week 1 tolerates 4 misses; week 2 tolerates 1 once the bank is spent |
+| **A sanity check on Raj's figure** | Churn by miss count, rather than one aggregate ratio |
+
+**What it answers.** Not one of the four claims — it answers **condition 5 in `strategy.md`**: *enough users break through protection to justify Candidate 1.* Currently bounded only at **0–36.2% of new signups**, because **Candidate 3's freeze is designed to prevent the event Candidate 1 responds to.** If the distribution concentrates in bucket 1, Candidate 1 has no audience.
+
+**Note the boundary this sits on, because the plan draws one.** §"What this plan does not do" says this plan must not test whether either candidate *would work*. **This does not test efficacy — it sizes an audience**, which is a scoping question, not an outcome question. The distinction matters: the discipline exists to stop us optimising a solution for a mislocated problem, and counting how many users a surface could ever reach does not do that.
+
+**It also improves the sequencing.** The plan holds the counterfactual replay until Query 1 confirms the problem's location. Putting this inside Query 1 means **the audience number arrives before the replay** — so if it lands near zero, the replay never needs to run for Candidate 1 at all.
+
+### Query 1c — What the leak costs in acquisition spend · *added 2026-09-17*
+
+**Why it is here.** Marcus has asked *"what is the cost of waiting another quarter?"* **three times**, and his profile records it as the one item *"partly answered, never quantified."* We have the qualitative argument — 28% YoY MAU growth hides a 9-point Day-7 decline at the top line while raising the spend needed to hold flat. We have never produced the number. It is attached here because Query 1 already computes everything on the product side.
+
+**Specification — two parts, and only one of them is ours.**
+
+| Part | Input | Source |
+|---|---|---|
+| **Volume** | Users lost per week to the 9-point decline: new signups/week × 9pp, and the same figure by segment from Query 1 | **This query.** Same cohort, same window |
+| **Unit cost** | Blended CAC, or CAC by acquisition channel | **Not in product data — needs finance or growth.** Name the owner when the query is assigned |
+
+**Report as:** weekly and annualised replacement cost of the decline, stated by channel if channel CAC is available, with the CAC source and date labelled.
+
+**Honest scoping.** Unlike 1b this is **not free** — the volume half is a byproduct of Query 1, the cost half is an external input we have to go and ask for. It is included because the alternative has been carrying it as a standing open question for four weeks, and because *"I don't have it"* has now been said to Marcus three times. **One request to finance closes it.**
+
 ---
 
 ## Query 2 — Confound sweep on v2
@@ -130,3 +173,5 @@ Queries 1–3 are days of work on existing data. The interviews are the long pol
 ## What this plan does not do
 
 It does not test whether Candidate 1 or Candidate 3 would work — that is the counterfactual replay, and it should not start until Query 1 confirms the problem is where we think it is. **Running the replay first risks optimising a solution for a problem we have mislocated.**
+
+**One amendment, 2026-09-17.** Query 1b sizes Candidate 1's addressable audience, which is closer to the solution than the rest of this plan goes. It is included deliberately and the line still holds: **sizing who a surface could reach is not testing whether it works.** The boundary this plan defends is against tuning a solution to a problem we have mislocated, and a headcount cannot do that. It earns its place by being free — one `GROUP BY` on a query that must run anyway — and by arriving *before* the replay, so a near-zero audience saves the replay for Candidate 1 entirely.

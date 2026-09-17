@@ -44,8 +44,10 @@ this is urgent rather than interesting is that MAU is still growing 28% year ove
 year, so a nine-point retention leak is invisible at the top line while it quietly
 raises what we have to spend to stay flat. You have asked me three times what that
 costs us in acquisition spend and I still do not have the number — I am not going to
-estimate it in front of you, and I have put it into the Query 1 brief so it comes
-back with the same pass.
+estimate it in front of you, and I have written it into the Query 1 brief as Query
+1c so it stops being a standing question — though I should be straight that it needs
+two inputs and we only own one, because the users-lost half comes out of Query 1 and
+the cost per user has to come from finance.
 
 ## Slide 3 · The proposal
 

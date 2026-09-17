@@ -144,6 +144,9 @@ Still unquantified, and I should stop presenting the qualitative version as an
 answer. The shape is known — MAU growing 28% YoY masks a 9-point Day-7 decline at
 the top line while quietly raising the acquisition spend needed to hold flat. The
 number is not. **This belongs in ask #1's scope:** whoever owns Query 1 can produce
-the acquisition-spend equivalent from the same data in the same pass, and I should
-request it as part of the brief rather than carrying it as a separate open question
-for a fourth week.
+the *volume* half — users lost per week to the 9 points — from the same data in the
+same pass. **The unit cost is not ours**: blended or per-channel CAC has to come from
+finance. **Now added to the plan as Query 1c** rather than carrying as a separate
+open question for a fourth week. One query plus one request closes it — and it is
+worth being precise that it is two inputs, not one, because promising it as a
+byproduct is how it slips again.
